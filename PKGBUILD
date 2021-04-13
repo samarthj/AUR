@@ -11,7 +11,7 @@ depends=('python' 'python-attrs' 'python-cached-property' 'python-click' 'python
 makedepends=('python-setuptools')
 #checkdepends=('python-pytest' 'python-pytest-timeout' 'python-pytest-flake8' 'python-pytest-cov')
 source=("$_pkgname-$pkgver.tar.gz::https://github.com/sarugaku/$_pkgname/archive/refs/tags/$pkgver.tar.gz")
-sha512sums=('1b095d31d0932944ce7eb74476626c8a6cc9afca65df082daafd374695a97d666574a63416d79d0e0b1feb4bdcd8fcc93be6b089b685a549d519942b9c4fc1e2')
+sha512sums=('41ad53cbb886c4a8197f3975993cb2e10c644dee87420060661d51d503bf2163f45db7e9ab9c343a3a94b2936e63e960099be13055ba6f37462e6a208e39e0f6')
 
 build() {
     cd $_pkgname-$pkgver
