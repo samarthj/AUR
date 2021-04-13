@@ -1,0 +1,19 @@
+pkgbase = python-pythonfinder
+	pkgdesc = Cross Platform Search Tool for Finding Pythons
+	pkgver = 1.2.6
+	pkgrel = 1
+	url = Cross Platform Search Tool for Finding Pythons
+	arch = any
+	license = MIT
+	makedepends = python-setuptools
+	depends = python
+	depends = python-attrs
+	depends = python-cached-property
+	depends = python-click
+	depends = python-six
+	depends = python-packaging
+	source = pythonfinder-1.2.6.tar.gz::https://github.com/sarugaku/pythonfinder/archive/refs/tags/1.2.6.tar.gz
+	sha512sums = 1b095d31d0932944ce7eb74476626c8a6cc9afca65df082daafd374695a97d666574a63416d79d0e0b1feb4bdcd8fcc93be6b089b685a549d519942b9c4fc1e2
+
+pkgname = python-pythonfinder
+
