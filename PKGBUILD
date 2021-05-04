@@ -28,5 +28,5 @@ package() {
       dist/${_pkgname//-/_}-$pkgver-py3-none-any.whl
     # pip compilation includes $pkgdir paths in the compiled files, this works around that:
     python -O -m compileall "${pkgdir}/$pkgname"
-    install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+    install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/$pkgname/LICENSE"
 }
