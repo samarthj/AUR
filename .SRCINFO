@@ -1,17 +1,15 @@
 pkgbase = python-pdm-pep517
 	pkgdesc = PEP 517 support for PDM
-	pkgver = 0.6.1
+	pkgver = 0.7.2
 	pkgrel = 1
 	url = https://pdm.fming.dev/
 	arch = any
 	license = MIT
-	checkdepends = git
-	checkdepends = python-pytest
 	makedepends = python-build
 	makedepends = python-pip
 	depends = python
-	source = pdm-pep517-0.6.1.tar.gz::https://github.com/pdm-project/pdm-pep517/archive/refs/tags/0.6.1.zip
-	sha512sums = 7dc39e24414aaa7bd2095c8739836e0e73b9758c3354559ca4b7c9a956c37404aff1de3346ffb1b804d2bcbe63073d805d681ce0cc77360450435ebc9a46b94d
+	source = https://files.pythonhosted.org/packages/source/p/pdm-pep517/pdm-pep517-0.7.2.tar.gz
+	sha512sums = ffb82060d0cc3b32eac6a9e144d14d5d81fd859ee779614f09902c1bfc660748e4ceb683749e0188b1c163ea743d6e813217cc563a761a3dd2ff488cee7589be
 
 pkgname = python-pdm-pep517
 

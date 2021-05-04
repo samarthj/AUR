@@ -1,7 +1,7 @@
 # Maintainer: Renato Caldas <renato dat calgera ot com>
 _pkgname=pdm-pep517
 pkgname=python-$_pkgname
-pkgver=0.6.1
+pkgver=0.7.2
 pkgrel=1
 pkgdesc="PEP 517 support for PDM"
 arch=('any')
@@ -9,18 +9,12 @@ url="https://pdm.fming.dev/"
 license=('MIT')
 depends=('python')
 makedepends=('python-build' 'python-pip')
-checkdepends=('git' 'python-pytest')
-source=("$_pkgname-$pkgver.tar.gz::https://github.com/pdm-project/$_pkgname/archive/refs/tags/$pkgver.zip")
-sha512sums=('7dc39e24414aaa7bd2095c8739836e0e73b9758c3354559ca4b7c9a956c37404aff1de3346ffb1b804d2bcbe63073d805d681ce0cc77360450435ebc9a46b94d')
+source=("https://files.pythonhosted.org/packages/source/${_pkgname::1}/$_pkgname/$_pkgname-$pkgver.tar.gz")
+sha512sums=('ffb82060d0cc3b32eac6a9e144d14d5d81fd859ee779614f09902c1bfc660748e4ceb683749e0188b1c163ea743d6e813217cc563a761a3dd2ff488cee7589be')
 
 build() {
     cd $_pkgname-$pkgver
-    python -m build --no-isolation --wheel .
-}
-
-check() {
-    cd $_pkgname-$pkgver
-    pytest
+    python -m build --wheel .
 }
 
 package() {
