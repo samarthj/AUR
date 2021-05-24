@@ -1,7 +1,7 @@
 # Maintainer: Renato Caldas <renato dat calgera ot com>
 _pkgname=pdm-pep517
 pkgname=python-$_pkgname
-pkgver=0.7.2
+pkgver=0.7.4
 pkgrel=1
 pkgdesc="PEP 517 support for PDM"
 arch=('any')
@@ -10,7 +10,7 @@ license=('MIT')
 depends=('python')
 makedepends=('python-build' 'python-pip')
 source=("https://files.pythonhosted.org/packages/source/${_pkgname::1}/$_pkgname/$_pkgname-$pkgver.tar.gz")
-sha512sums=('ffb82060d0cc3b32eac6a9e144d14d5d81fd859ee779614f09902c1bfc660748e4ceb683749e0188b1c163ea743d6e813217cc563a761a3dd2ff488cee7589be')
+sha512sums=('9eb8a766459bfe1c534dd076696103fef9d6eb6a2df510836d7ea65a6ca6eecaba17ad23bbeb25eca5f99d1f9f1cb0f74d35c1e213cbc8334d8df0211c751e23')
 
 build() {
     cd $_pkgname-$pkgver
