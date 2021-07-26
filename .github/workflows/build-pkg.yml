@@ -1,4 +1,4 @@
-name: CI
+name: Build packages
 
 on:
   schedule:
@@ -8,7 +8,7 @@ on:
       - main
 
 jobs:
-  podman:
+  buildah-git:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -16,16 +16,251 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
-
       - name: Build
         id: build
         uses: samarthj/arch-pkgbuild-action@v0.1
         with:
-          pkgbuild_root: podman-git
-
-      - uses: actions/upload-artifact@v2
+          pkgbuild_root: ${{ github.job }}
+          aur_username: samarthj
+          aur_email: dev@samarthj.com
+          aur_ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
+        env:
+          GOPATH: /home/builder/.local/share/go
+          GOCACHE: /home/builder/.cache/go
+      - name: Upload 0
+        uses: actions/upload-artifact@v2
         with:
-          path: |
-            ${{ steps.build.outputs.podman-git }}
-            ${{ steps.build.outputs.podman-docker-git }}
+          name: ${{ steps.build.outputs.0 }}
+          path: ${{ steps.build.outputs.0 }}
           if-no-files-found: error
+          retention-days: 30
+  conmon-git:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Build
+        id: build
+        uses: samarthj/arch-pkgbuild-action@v0.1
+        with:
+          pkgbuild_root: ${{ github.job }}
+          aur_username: samarthj
+          aur_email: dev@samarthj.com
+          aur_ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
+        env:
+          GOPATH: /home/builder/.local/share/go
+          GOCACHE: /home/builder/.cache/go
+      - name: Upload 0
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ steps.build.outputs.0 }}
+          path: ${{ steps.build.outputs.0 }}
+          if-no-files-found: error
+          retention-days: 30
+  containers-common-git:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Build
+        id: build
+        uses: samarthj/arch-pkgbuild-action@v0.1
+        with:
+          pkgbuild_root: ${{ github.job }}
+          aur_username: samarthj
+          aur_email: dev@samarthj.com
+          aur_ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
+        env:
+          GOPATH: /home/builder/.local/share/go
+          GOCACHE: /home/builder/.cache/go
+      - name: Upload 0
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ steps.build.outputs.0 }}
+          path: ${{ steps.build.outputs.0 }}
+          if-no-files-found: error
+          retention-days: 30
+  crun-git:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Build
+        id: build
+        uses: samarthj/arch-pkgbuild-action@v0.1
+        with:
+          pkgbuild_root: ${{ github.job }}
+          aur_username: samarthj
+          aur_email: dev@samarthj.com
+          aur_ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
+        env:
+          GOPATH: /home/builder/.local/share/go
+          GOCACHE: /home/builder/.cache/go
+      - name: Upload 0
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ steps.build.outputs.0 }}
+          path: ${{ steps.build.outputs.0 }}
+          if-no-files-found: error
+          retention-days: 30
+  podman-dnsname-git:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Build
+        id: build
+        uses: samarthj/arch-pkgbuild-action@v0.1
+        with:
+          pkgbuild_root: ${{ github.job }}
+          aur_username: samarthj
+          aur_email: dev@samarthj.com
+          aur_ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
+        env:
+          GOPATH: /home/builder/.local/share/go
+          GOCACHE: /home/builder/.cache/go
+      - name: Upload 0
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ steps.build.outputs.0 }}
+          path: ${{ steps.build.outputs.0 }}
+          if-no-files-found: error
+          retention-days: 30
+  podman-git:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Build
+        id: build
+        uses: samarthj/arch-pkgbuild-action@v0.1
+        with:
+          pkgbuild_root: ${{ github.job }}
+          aur_username: samarthj
+          aur_email: dev@samarthj.com
+          aur_ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
+        env:
+          GOPATH: /home/builder/.local/share/go
+          GOCACHE: /home/builder/.cache/go
+      - name: Upload 0
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ steps.build.outputs.0 }}
+          path: ${{ steps.build.outputs.0 }}
+          if-no-files-found: error
+          retention-days: 30
+      - name: Upload 1
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ steps.build.outputs.1 }}
+          path: ${{ steps.build.outputs.1 }}
+          if-no-files-found: error
+          retention-days: 30
+      - name: Commit & Push changes
+        uses: actions-js/push@master
+        with:
+          author_name: samarthj
+          author_email: dev@samarthj.com
+          message: 'ci(github-actions): :package: ${{ steps.build.outputs.0 }}, ${{ steps.build.outputs.1 }}'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  skopeo-git:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Build
+        id: build
+        uses: samarthj/arch-pkgbuild-action@v0.1
+        with:
+          pkgbuild_root: ${{ github.job }}
+          aur_username: samarthj
+          aur_email: dev@samarthj.com
+          aur_ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
+        env:
+          GOPATH: /home/builder/.local/share/go
+          GOCACHE: /home/builder/.cache/go
+      - name: Upload 0
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ steps.build.outputs.0 }}
+          path: ${{ steps.build.outputs.0 }}
+          if-no-files-found: error
+          retention-days: 30
+  slirp4netns-git:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Build
+        id: build
+        uses: samarthj/arch-pkgbuild-action@v0.1
+        with:
+          pkgbuild_root: ${{ github.job }}
+          aur_username: samarthj
+          aur_email: dev@samarthj.com
+          aur_ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
+        env:
+          GOPATH: /home/builder/.local/share/go
+          GOCACHE: /home/builder/.cache/go
+      - name: Upload 0
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ steps.build.outputs.0 }}
+          path: ${{ steps.build.outputs.0 }}
+          if-no-files-found: error
+          retention-days: 30
+  gallery-dl-bin:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Build
+        id: build
+        uses: samarthj/arch-pkgbuild-action@v0.1
+        with:
+          pkgbuild_root: ${{ github.job }}
+          aur_username: samarthj
+          aur_email: dev@samarthj.com
+          aur_ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
+      - name: Upload
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ steps.build.outputs.0 }}
+          path: ${{ steps.build.outputs.0 }}
+          if-no-files-found: error
+          retention-days: 30
+      - name: Commit & Push changes
+        uses: actions-js/push@master
+        with:
+          author_name: samarthj
+          author_email: dev@samarthj.com
+          message: 'ci(github-actions): :package: ${{ steps.build.outputs.0 }}'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
