@@ -46,15 +46,20 @@ jobs:
         env:
           GOPATH: /home/builder/.local/share/go
           GOCACHE: /home/builder/.cache/go
-      - name: Release ${{ steps.build.outputs.ver0 }}
-        uses: softprops/action-gh-release@v1
+      - name: Delete tag ${{ matrix.package }}
+        uses: cb80/delrel@latest
         with:
-          name: ${{ matrix.package }}
-          tag_name: ${{ matrix.package }}
-          files: |
-            *.tar.zst
+          tag: ${{ matrix.package }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Release tag ${{ matrix.package }}
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ matrix.package }}
+          name: ${{ steps.build.outputs.ver0 }}
           body: ${{ steps.build.outputs.ver0 }}
-          fail_on_unmatched_files: false
+          allowUpdates: true
+          replacesArtifacts: true
+          artifacts: '*.tar.zst'
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Rebase
         run: |
