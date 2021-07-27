@@ -1,5 +1,7 @@
 # Sam's AUR Packages
 
+[![Build packages](https://github.com/samarthj/AUR/actions/workflows/build-pkg.yml/badge.svg)](https://github.com/samarthj/AUR/actions/workflows/build-pkg.yml)
+
 Things that I am maintaining on the arch user repository.
 
 ## Doing builds

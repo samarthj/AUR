@@ -39,99 +39,34 @@ jobs:
         uses: samarthj/arch-pkgbuild-action@v1
         with:
           pkgbuild_root: ${{ matrix.package }}
-          aur_username: samarthj
+          aur_username: Sam
           aur_email: dev@samarthj.com
           aur_ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
           dry_run: false
         env:
           GOPATH: /home/builder/.local/share/go
           GOCACHE: /home/builder/.cache/go
-      - name: Release ${{ matrix.package }}
+      - name: Release ${{ steps.build.outputs.ver0 }}
         uses: softprops/action-gh-release@v1
         with:
           name: ${{ matrix.package }}
           tag_name: ${{ matrix.package }}
           files: |
-            ${{ steps.build.outputs.pkg0 }}
-            ${{ steps.build.outputs.pkg1 }}
+            *.tar.zst
           body: ${{ steps.build.outputs.ver0 }}
           fail_on_unmatched_files: false
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Stash the updated PKGBUILD for ${{ matrix.package }}
-        if: ${{ steps.build.outputs.pkg0 != null }}
-        uses: actions/upload-artifact@v2
-        with:
-          name: ${{ matrix.package }}
-          path: ${{ matrix.package }}
-  push:
-    runs-on: ubuntu-latest
-    needs: [build]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          persist-credentials: false
-          fetch-depth: 0
-      - name: Fetch buildah-git
-        uses: actions/download-artifact@v2
-        continue-on-error: true
-        with:
-          name: buildah-git
-          path: ./buildah-git
-      - name: Fetch conmon-git
-        uses: actions/download-artifact@v2
-        continue-on-error: true
-        with:
-          name: conmon-git
-          path: ./conmon-git
-      - name: Fetch containers-common-git
-        uses: actions/download-artifact@v2
-        continue-on-error: true
-        with:
-          name: containers-common-git
-          path: ./containers-common-git
-      - name: Fetch crun-git
-        uses: actions/download-artifact@v2
-        continue-on-error: true
-        with:
-          name: crun-git
-          path: ./crun-git
-      - name: Fetch gallery-dl-bin
-        uses: actions/download-artifact@v2
-        continue-on-error: true
-        with:
-          name: gallery-dl-bin
-          path: ./gallery-dl-bin
-      - name: Fetch podman-dnsname-git
-        uses: actions/download-artifact@v2
-        continue-on-error: true
-        with:
-          name: podman-dnsname-git
-          path: ./podman-dnsname-git
-      - name: Fetch podman-git
-        uses: actions/download-artifact@v2
-        continue-on-error: true
-        with:
-          name: podman-git
-          path: ./podman-git
-      - name: Fetch skopeo-git
-        uses: actions/download-artifact@v2
-        continue-on-error: true
-        with:
-          name: skopeo-git
-          path: ./skopeo-git
-      - name: Fetch slirp4netns-git
-        uses: actions/download-artifact@v2
-        continue-on-error: true
-        with:
-          name: slirp4netns-git
-          path: ./slirp4netns-git
-      - name: Commit & Push changes
+      - name: Rebase
+        run: |
+          git stash
+          git pull --rebase
+          git stash pop
+      - name: Commit & Push changes ${{ steps.build.outputs.ver0 }}
         uses: actions-js/push@master
         with:
-          author_name: samarthj
+          author_name: Sam
           author_email: dev@samarthj.com
-          message: 'ci(github-actions): :package: updpkgs'
+          message: 'ci(github-actions): :package: updpkg: ${{ steps.build.outputs.ver0 }}'
           github_token: ${{ secrets.GITHUB_TOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
