@@ -61,15 +61,13 @@ jobs:
           replacesArtifacts: true
           artifacts: '*.tar.zst'
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Rebase and push
-        shell: bash
-        run: |
-          git add .
-          git status
-          [ -z "$(git diff FETCH_HEAD --stat)" ] && exit 0
-          git config --local user.name Sam
-          git config --local user.email dev@samarthj.com
-          git commit --message "ci(github-actions): :package: updpkg: ${{ steps.build.outputs.ver0 }}"
-          git fetch origin main
-          git pull --rebase origin main
-          git push
+      - name: Commit & Push changes
+        uses: benkaiser/rebase-commit-push@master
+        with:
+          rebase: true
+          author_name: Sam
+          author_email: dev@samarthj.com
+          message: 'ci(github-actions): :package: ${{ steps.build.outputs.version }}'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
