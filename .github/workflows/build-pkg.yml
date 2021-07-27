@@ -61,16 +61,31 @@ jobs:
           replacesArtifacts: true
           artifacts: '*.tar.zst'
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Commit & Push changes
-        uses: benkaiser/rebase-commit-push@master
-        with:
-          rebase: true
-          coauthor_name: Sam
-          coauthor_email: dev@samarthj.com
-          message: 'ci(github-actions): updpkg: ${{ steps.build.outputs.ver0 }}'
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
-          empty: false
-          tags: false
+      - name: Rebase and Push
+        shell: bash
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name "Sam"
+          git config --global user.email dev@samarthj.com
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          git add .
+          git status
+          [ -z "$(git diff FETCH_HEAD --stat)" ] && exit 0
+          git commit --message "ci(github-actions): :package: updpkg: ${{ steps.build.outputs.ver0 }}"
+          git fetch origin main
+          git pull --rebase origin main
+          git push
+      # - name: Commit & Push changes
+      #   uses: benkaiser/rebase-commit-push@master
+      #   with:
+      #     rebase: true
+      #     coauthor_name: Sam
+      #     coauthor_email: dev@samarthj.com
+      #     message: 'ci(github-actions): updpkg: ${{ steps.build.outputs.ver0 }}'
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     branch: main
+      #     empty: false
+      #     tags: false
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
