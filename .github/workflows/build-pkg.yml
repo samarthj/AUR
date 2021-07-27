@@ -128,11 +128,11 @@ jobs:
           name: slirp4netns-git
           path: ./slirp4netns-git
       - name: Commit & Push changes
-        uses: benkaiser/rebase-commit-push@v1.1
+        uses: actions-js/push@master
         with:
-          rebase: true
           author_name: samarthj
           author_email: dev@samarthj.com
           message: 'ci(github-actions): :package: updpkgs'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
