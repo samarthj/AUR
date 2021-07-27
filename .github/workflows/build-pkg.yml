@@ -65,10 +65,12 @@ jobs:
         uses: benkaiser/rebase-commit-push@master
         with:
           rebase: true
-          author_name: Sam
-          author_email: dev@samarthj.com
+          coauthor_name: Sam
+          coauthor_email: dev@samarthj.com
           message: 'ci(github-actions): updpkg: ${{ steps.build.outputs.ver0 }}'
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
+          empty: false
+          tags: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
