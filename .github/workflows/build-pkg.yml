@@ -67,7 +67,7 @@ jobs:
           rebase: true
           author_name: Sam
           author_email: dev@samarthj.com
-          message: 'ci(github-actions): :package: ${{ steps.build.outputs.version }}'
+          message: 'ci(github-actions): updpkg: ${{ steps.build.outputs.ver0 }}'
           github_token: ${{ secrets.GITHUB_TOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
