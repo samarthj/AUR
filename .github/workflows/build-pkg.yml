@@ -142,6 +142,6 @@ jobs:
           rebase: true
           author_name: samarthj
           author_email: dev@samarthj.com
-          message: 'ci(github-actions): :package: ${{ steps.build.outputs.ver0 }}'
+          message: 'ci(github-actions): :package: updpkgs'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
