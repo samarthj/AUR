@@ -67,6 +67,8 @@ jobs:
           git add .
           git status
           [ -z "$(git diff FETCH_HEAD --stat)" ] && exit 0
+          git config --local user.name Sam
+          git config --local user.email dev@samarthj.com
           git commit --message "ci(github-actions): :package: updpkg: ${{ steps.build.outputs.ver0 }}"
           git fetch origin main
           git pull --rebase origin main
