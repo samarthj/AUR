@@ -68,6 +68,7 @@ jobs:
           fail_on_unmatched_files: false
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Stash the updated PKGBUILD for ${{ matrix.package }}
+        if: ${{ steps.build.outputs.pkg0 != null }}
         uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.package }}
@@ -78,50 +79,60 @@ jobs:
     steps:
       - name: Fetch the codebase
         uses: actions/download-artifact@v2
+        continue-on-error: true
         with:
           name: codebase-${{ github.sha }}
       - name: Fetch buildah-git
         uses: actions/download-artifact@v2
+        continue-on-error: true
         with:
           name: buildah-git
           path: ./buildah-git
       - name: Fetch conmon-git
         uses: actions/download-artifact@v2
+        continue-on-error: true
         with:
           name: conmon-git
           path: ./conmon-git
       - name: Fetch containers-common-git
         uses: actions/download-artifact@v2
+        continue-on-error: true
         with:
           name: containers-common-git
           path: ./containers-common-git
       - name: Fetch crun-git
         uses: actions/download-artifact@v2
+        continue-on-error: true
         with:
           name: crun-git
           path: ./crun-git
       - name: Fetch gallery-dl-bin
         uses: actions/download-artifact@v2
+        continue-on-error: true
         with:
           name: gallery-dl-bin
           path: ./gallery-dl-bin
       - name: Fetch podman-dnsname-git
         uses: actions/download-artifact@v2
+        continue-on-error: true
         with:
           name: podman-dnsname-git
           path: ./podman-dnsname-git
       - name: Fetch podman-git
         uses: actions/download-artifact@v2
+        continue-on-error: true
         with:
           name: podman-git
           path: ./podman-git
       - name: Fetch skopeo-git
         uses: actions/download-artifact@v2
+        continue-on-error: true
         with:
           name: skopeo-git
           path: ./skopeo-git
       - name: Fetch slirp4netns-git
         uses: actions/download-artifact@v2
+        continue-on-error: true
         with:
           name: slirp4netns-git
           path: ./slirp4netns-git
