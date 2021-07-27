@@ -27,11 +27,11 @@ jobs:
         env:
           GOPATH: /home/builder/.local/share/go
           GOCACHE: /home/builder/.cache/go
-      - name: Upload 0
+      - name: Upload ${{ steps.build.outputs.pkg0 }}
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ steps.build.outputs.0 }}
-          path: ${{ steps.build.outputs.0 }}
+          name: ${{ steps.build.outputs.pkg0 }}
+          path: ${{ steps.build.outputs.pkg0 }}
           if-no-files-found: error
           retention-days: 30
   conmon-git:
@@ -53,11 +53,11 @@ jobs:
         env:
           GOPATH: /home/builder/.local/share/go
           GOCACHE: /home/builder/.cache/go
-      - name: Upload 0
+      - name: Upload ${{ steps.build.outputs.pkg0 }}
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ steps.build.outputs.0 }}
-          path: ${{ steps.build.outputs.0 }}
+          name: ${{ steps.build.outputs.pkg0 }}
+          path: ${{ steps.build.outputs.pkg0 }}
           if-no-files-found: error
           retention-days: 30
   containers-common-git:
@@ -79,11 +79,11 @@ jobs:
         env:
           GOPATH: /home/builder/.local/share/go
           GOCACHE: /home/builder/.cache/go
-      - name: Upload 0
+      - name: Upload ${{ steps.build.outputs.pkg0 }}
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ steps.build.outputs.0 }}
-          path: ${{ steps.build.outputs.0 }}
+          name: ${{ steps.build.outputs.pkg0 }}
+          path: ${{ steps.build.outputs.pkg0 }}
           if-no-files-found: error
           retention-days: 30
   crun-git:
@@ -105,11 +105,11 @@ jobs:
         env:
           GOPATH: /home/builder/.local/share/go
           GOCACHE: /home/builder/.cache/go
-      - name: Upload 0
+      - name: Upload ${{ steps.build.outputs.pkg0 }}
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ steps.build.outputs.0 }}
-          path: ${{ steps.build.outputs.0 }}
+          name: ${{ steps.build.outputs.pkg0 }}
+          path: ${{ steps.build.outputs.pkg0 }}
           if-no-files-found: error
           retention-days: 30
   podman-dnsname-git:
@@ -131,11 +131,11 @@ jobs:
         env:
           GOPATH: /home/builder/.local/share/go
           GOCACHE: /home/builder/.cache/go
-      - name: Upload 0
+      - name: Upload ${{ steps.build.outputs.pkg0 }}
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ steps.build.outputs.0 }}
-          path: ${{ steps.build.outputs.0 }}
+          name: ${{ steps.build.outputs.pkg0 }}
+          path: ${{ steps.build.outputs.pkg0 }}
           if-no-files-found: error
           retention-days: 30
   podman-git:
@@ -157,18 +157,18 @@ jobs:
         env:
           GOPATH: /home/builder/.local/share/go
           GOCACHE: /home/builder/.cache/go
-      - name: Upload 0
+      - name: Upload ${{ steps.build.outputs.pkg0 }}
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ steps.build.outputs.0 }}
-          path: ${{ steps.build.outputs.0 }}
+          name: ${{ steps.build.outputs.pkg0 }}
+          path: ${{ steps.build.outputs.pkg0 }}
           if-no-files-found: error
           retention-days: 30
-      - name: Upload 1
+      - name: Upload ${{ steps.build.outputs.pkg1 }}
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ steps.build.outputs.1 }}
-          path: ${{ steps.build.outputs.1 }}
+          name: ${{ steps.build.outputs.pkg1 }}
+          path: ${{ steps.build.outputs.pkg1 }}
           if-no-files-found: error
           retention-days: 30
       - name: Commit & Push changes
@@ -176,7 +176,7 @@ jobs:
         with:
           author_name: samarthj
           author_email: dev@samarthj.com
-          message: 'ci(github-actions): :package: ${{ steps.build.outputs.0 }}, ${{ steps.build.outputs.1 }}'
+          message: 'ci(github-actions): :package: ${{ steps.build.outputs.pkg0 }}, ${{ steps.build.outputs.pkg1 }}'
           github_token: ${{ secrets.GITHUB_TOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -199,11 +199,11 @@ jobs:
         env:
           GOPATH: /home/builder/.local/share/go
           GOCACHE: /home/builder/.cache/go
-      - name: Upload 0
+      - name: Upload ${{ steps.build.outputs.pkg0 }}
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ steps.build.outputs.0 }}
-          path: ${{ steps.build.outputs.0 }}
+          name: ${{ steps.build.outputs.pkg0 }}
+          path: ${{ steps.build.outputs.pkg0 }}
           if-no-files-found: error
           retention-days: 30
   slirp4netns-git:
@@ -225,11 +225,11 @@ jobs:
         env:
           GOPATH: /home/builder/.local/share/go
           GOCACHE: /home/builder/.cache/go
-      - name: Upload 0
+      - name: Upload ${{ steps.build.outputs.pkg0 }}
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ steps.build.outputs.0 }}
-          path: ${{ steps.build.outputs.0 }}
+          name: ${{ steps.build.outputs.pkg0 }}
+          path: ${{ steps.build.outputs.pkg0 }}
           if-no-files-found: error
           retention-days: 30
   gallery-dl-bin:
@@ -251,8 +251,8 @@ jobs:
       - name: Upload
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ steps.build.outputs.0 }}
-          path: ${{ steps.build.outputs.0 }}
+          name: ${{ steps.build.outputs.pkg0 }}
+          path: ${{ steps.build.outputs.pkg0 }}
           if-no-files-found: error
           retention-days: 30
       - name: Commit & Push changes
@@ -260,7 +260,7 @@ jobs:
         with:
           author_name: samarthj
           author_email: dev@samarthj.com
-          message: 'ci(github-actions): :package: ${{ steps.build.outputs.0 }}'
+          message: 'ci(github-actions): :package: ${{ steps.build.outputs.pkg0 }}'
           github_token: ${{ secrets.GITHUB_TOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
