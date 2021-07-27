@@ -7,6 +7,10 @@ on:
     branches:
       - main
 
+concurrency:
+  group: ${{ github.repository }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
