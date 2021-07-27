@@ -33,7 +33,6 @@ jobs:
             'conmon-git',
             'containers-common-git',
             'crun-git',
-            'gallery-dl-bin',
             'podman-dnsname-git',
             'podman-git',
             'skopeo-git',
