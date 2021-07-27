@@ -48,7 +48,6 @@ jobs:
           GOCACHE: /home/builder/.cache/go
       - name: Release ${{ matrix.package }}
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
         with:
           name: ${{ matrix.package }}
           tag_name: ${{ matrix.package }}
