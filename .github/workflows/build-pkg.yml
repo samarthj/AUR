@@ -69,5 +69,6 @@ jobs:
           author_email: dev@samarthj.com
           message: 'ci(github-actions): updpkg: ${{ steps.build.outputs.ver0 }}'
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
