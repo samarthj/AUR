@@ -8,22 +8,8 @@ on:
       - main
 
 jobs:
-  checkout:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          persist-credentials: false
-          fetch-depth: 0
-      - name: Stash the codebase
-        uses: actions/upload-artifact@v2
-        with:
-          name: codebase-${{ github.sha }}
-          path: ./
   build:
     runs-on: ubuntu-latest
-    needs: [checkout]
     strategy:
       fail-fast: true
       matrix:
@@ -39,10 +25,11 @@ jobs:
             'slirp4netns-git',
           ]
     steps:
-      - name: Fetch the codebase
-        uses: actions/download-artifact@v2
+      - name: Checkout
+        uses: actions/checkout@v2
         with:
-          name: codebase-${{ github.sha }}
+          persist-credentials: false
+          fetch-depth: 0
       - name: Build
         id: build
         uses: samarthj/arch-pkgbuild-action@v1
@@ -77,11 +64,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
-      - name: Fetch the codebase
-        uses: actions/download-artifact@v2
-        continue-on-error: true
+      - name: Checkout
+        uses: actions/checkout@v2
         with:
-          name: codebase-${{ github.sha }}
+          persist-credentials: false
+          fetch-depth: 0
       - name: Fetch buildah-git
         uses: actions/download-artifact@v2
         continue-on-error: true
