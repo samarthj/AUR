@@ -8,8 +8,22 @@ on:
       - main
 
 jobs:
-  buildah-git:
+  packages:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        package:
+          [
+            'buildah-git',
+            'conmon-git',
+            'containers-common-git',
+            'crun-git',
+            'gallery-dl-bin',
+            'podman-dnsname-git',
+            'skopeo-git',
+            'slirp4netns-git',
+          ]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -20,7 +34,7 @@ jobs:
         id: build
         uses: samarthj/arch-pkgbuild-action@v1
         with:
-          pkgbuild_root: ${{ github.job }}
+          pkgbuild_root: ${{ matrix.package }}
           aur_username: samarthj
           aur_email: dev@samarthj.com
           aur_ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
@@ -28,157 +42,16 @@ jobs:
         env:
           GOPATH: /home/builder/.local/share/go
           GOCACHE: /home/builder/.cache/go
-      - name: Upload ${{ steps.build.outputs.pkg0 }}
-        uses: actions/upload-artifact@v2
+      - name: Release ${{ matrix.package }}
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
         with:
-          name: ${{ steps.build.outputs.pkg0 }}
-          path: ${{ steps.build.outputs.pkg0 }}
-          if-no-files-found: error
-          retention-days: 30
-      - name: Commit & Push changes
-        uses: benkaiser/rebase-commit-push@v1.1
-        with:
-          rebase: true
-          author_name: samarthj
-          author_email: dev@samarthj.com
-          message: 'ci(github-actions): :package: ${{ steps.build.outputs.ver0 }}'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  conmon-git:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          persist-credentials: false
-          fetch-depth: 0
-      - name: Build
-        id: build
-        uses: samarthj/arch-pkgbuild-action@v1
-        with:
-          pkgbuild_root: ${{ github.job }}
-          aur_username: samarthj
-          aur_email: dev@samarthj.com
-          aur_ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
-          dry_run: false
-        env:
-          GOPATH: /home/builder/.local/share/go
-          GOCACHE: /home/builder/.cache/go
-      - name: Upload ${{ steps.build.outputs.pkg0 }}
-        uses: actions/upload-artifact@v2
-        with:
-          name: ${{ steps.build.outputs.pkg0 }}
-          path: ${{ steps.build.outputs.pkg0 }}
-          if-no-files-found: error
-          retention-days: 30
-      - name: Commit & Push changes
-        uses: benkaiser/rebase-commit-push@v1.1
-        with:
-          rebase: true
-          author_name: samarthj
-          author_email: dev@samarthj.com
-          message: 'ci(github-actions): :package: ${{ steps.build.outputs.ver0 }}'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  containers-common-git:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          persist-credentials: false
-          fetch-depth: 0
-      - name: Build
-        id: build
-        uses: samarthj/arch-pkgbuild-action@v1
-        with:
-          pkgbuild_root: ${{ github.job }}
-          aur_username: samarthj
-          aur_email: dev@samarthj.com
-          aur_ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
-          dry_run: false
-        env:
-          GOPATH: /home/builder/.local/share/go
-          GOCACHE: /home/builder/.cache/go
-      - name: Upload ${{ steps.build.outputs.pkg0 }}
-        uses: actions/upload-artifact@v2
-        with:
-          name: ${{ steps.build.outputs.pkg0 }}
-          path: ${{ steps.build.outputs.pkg0 }}
-          if-no-files-found: error
-          retention-days: 30
-      - name: Commit & Push changes
-        uses: benkaiser/rebase-commit-push@v1.1
-        with:
-          rebase: true
-          author_name: samarthj
-          author_email: dev@samarthj.com
-          message: 'ci(github-actions): :package: ${{ steps.build.outputs.ver0 }}'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  crun-git:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          persist-credentials: false
-          fetch-depth: 0
-      - name: Build
-        id: build
-        uses: samarthj/arch-pkgbuild-action@v1
-        with:
-          pkgbuild_root: ${{ github.job }}
-          aur_username: samarthj
-          aur_email: dev@samarthj.com
-          aur_ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
-          dry_run: false
-        env:
-          GOPATH: /home/builder/.local/share/go
-          GOCACHE: /home/builder/.cache/go
-      - name: Upload ${{ steps.build.outputs.pkg0 }}
-        uses: actions/upload-artifact@v2
-        with:
-          name: ${{ steps.build.outputs.pkg0 }}
-          path: ${{ steps.build.outputs.pkg0 }}
-          if-no-files-found: error
-          retention-days: 30
-      - name: Commit & Push changes
-        uses: benkaiser/rebase-commit-push@v1.1
-        with:
-          rebase: true
-          author_name: samarthj
-          author_email: dev@samarthj.com
-          message: 'ci(github-actions): :package: ${{ steps.build.outputs.ver0 }}'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  podman-dnsname-git:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          persist-credentials: false
-          fetch-depth: 0
-      - name: Build
-        id: build
-        uses: samarthj/arch-pkgbuild-action@v1
-        with:
-          pkgbuild_root: ${{ github.job }}
-          aur_username: samarthj
-          aur_email: dev@samarthj.com
-          aur_ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
-          dry_run: false
-        env:
-          GOPATH: /home/builder/.local/share/go
-          GOCACHE: /home/builder/.cache/go
-      - name: Upload ${{ steps.build.outputs.pkg0 }}
-        uses: actions/upload-artifact@v2
-        with:
-          name: ${{ steps.build.outputs.pkg0 }}
-          path: ${{ steps.build.outputs.pkg0 }}
-          if-no-files-found: error
-          retention-days: 30
+          name: ${{ matrix.package }}
+          tag_name: ${{ matrix.package }}
+          files: ${{ steps.build.outputs.pkg0 }}
+          body: ${{ steps.build.outputs.ver0 }}
+          fail_on_unmatched_files: true
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Commit & Push changes
         uses: benkaiser/rebase-commit-push@v1.1
         with:
@@ -208,125 +81,18 @@ jobs:
         env:
           GOPATH: /home/builder/.local/share/go
           GOCACHE: /home/builder/.cache/go
-      - name: Upload ${{ steps.build.outputs.pkg0 }}
-        uses: actions/upload-artifact@v2
+      - name: Release ${{ github.job }}
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
         with:
-          name: ${{ steps.build.outputs.pkg0 }}
-          path: ${{ steps.build.outputs.pkg0 }}
-          if-no-files-found: error
-          retention-days: 30
-      - name: Upload ${{ steps.build.outputs.pkg1 }}
-        uses: actions/upload-artifact@v2
-        with:
-          name: ${{ steps.build.outputs.pkg1 }}
-          path: ${{ steps.build.outputs.pkg1 }}
-          if-no-files-found: error
-          retention-days: 30
-      - name: Commit & Push changes
-        uses: benkaiser/rebase-commit-push@v1.1
-        with:
-          rebase: true
-          author_name: samarthj
-          author_email: dev@samarthj.com
-          message: 'ci(github-actions): :package: ${{ steps.build.outputs.ver0 }}, ${{ steps.build.outputs.ver1 }}'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  skopeo-git:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          persist-credentials: false
-          fetch-depth: 0
-      - name: Build
-        id: build
-        uses: samarthj/arch-pkgbuild-action@v1
-        with:
-          pkgbuild_root: ${{ github.job }}
-          aur_username: samarthj
-          aur_email: dev@samarthj.com
-          aur_ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
-          dry_run: false
-        env:
-          GOPATH: /home/builder/.local/share/go
-          GOCACHE: /home/builder/.cache/go
-      - name: Upload ${{ steps.build.outputs.pkg0 }}
-        uses: actions/upload-artifact@v2
-        with:
-          name: ${{ steps.build.outputs.pkg0 }}
-          path: ${{ steps.build.outputs.pkg0 }}
-          if-no-files-found: error
-          retention-days: 30
-      - name: Commit & Push changes
-        uses: benkaiser/rebase-commit-push@v1.1
-        with:
-          rebase: true
-          author_name: samarthj
-          author_email: dev@samarthj.com
-          message: 'ci(github-actions): :package: ${{ steps.build.outputs.ver0 }}'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  slirp4netns-git:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          persist-credentials: false
-          fetch-depth: 0
-      - name: Build
-        id: build
-        uses: samarthj/arch-pkgbuild-action@v1
-        with:
-          pkgbuild_root: ${{ github.job }}
-          aur_username: samarthj
-          aur_email: dev@samarthj.com
-          aur_ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
-          dry_run: false
-        env:
-          GOPATH: /home/builder/.local/share/go
-          GOCACHE: /home/builder/.cache/go
-      - name: Upload ${{ steps.build.outputs.pkg0 }}
-        uses: actions/upload-artifact@v2
-        with:
-          name: ${{ steps.build.outputs.pkg0 }}
-          path: ${{ steps.build.outputs.pkg0 }}
-          if-no-files-found: error
-          retention-days: 30
-      - name: Commit & Push changes
-        uses: benkaiser/rebase-commit-push@v1.1
-        with:
-          rebase: true
-          author_name: samarthj
-          author_email: dev@samarthj.com
-          message: 'ci(github-actions): :package: ${{ steps.build.outputs.ver0 }}'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  gallery-dl-bin:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          persist-credentials: false
-          fetch-depth: 0
-      - name: Build
-        id: build
-        uses: samarthj/arch-pkgbuild-action@v1
-        with:
-          pkgbuild_root: ${{ github.job }}
-          aur_username: samarthj
-          aur_email: dev@samarthj.com
-          aur_ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
-          dry_run: false
-      - name: Upload
-        uses: actions/upload-artifact@v2
-        with:
-          name: ${{ steps.build.outputs.pkg0 }}
-          path: ${{ steps.build.outputs.pkg0 }}
-          if-no-files-found: error
-          retention-days: 30
+          name: ${{ github.job }}
+          tag_name: ${{ github.job }}
+          files: |
+            ${{ steps.build.outputs.pkg0 }}
+            ${{ steps.build.outputs.pkg1 }}
+          body: ${{ steps.build.outputs.ver0 }}
+          fail_on_unmatched_files: true
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Commit & Push changes
         uses: benkaiser/rebase-commit-push@v1.1
         with:
