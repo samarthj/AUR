@@ -4,7 +4,11 @@
 
 Things that I am maintaining on the arch user repository.
 
-## Doing builds
+All git packages have automated build release cycles every week. (At some point I will implement following upstreams directly rather than having an arbitrary schedule, but this works well enough for now.).
+
+The packages are available as release assets, however it is recommended to install directly from your package manager (since a few builds depend on system configuration discovery).
+
+## Doing local builds
 
 I use containerized builds using [archlinux:base-devel](https://hub.docker.com/_/archlinux).
 
@@ -70,8 +74,7 @@ namcap ./<package-name>/PKGBUILD ./packages/<package-name>*.tar.zst
 
 ---
 
-Note 1: Still in the process of automating it for this github repo, but listed below is my local setup.
-Note 2: You may also just use the [devtools chroot](https://wiki.archlinux.org/title/DeveloperWiki:Building_in_a_clean_chroot) process for local builds on archlinux (though I find that the process isn't as clean as one might think, since parts of making the chroot still depend on your specific system's configuration).
+Tip: You may also just use the [devtools chroot](https://wiki.archlinux.org/title/DeveloperWiki:Building_in_a_clean_chroot) process for local builds on archlinux (though I find that the process isn't as clean as one might think, since parts of making the chroot still depend on your specific system's configuration).
 
 ---
 
