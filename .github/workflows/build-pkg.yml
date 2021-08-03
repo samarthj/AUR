@@ -25,6 +25,8 @@ jobs:
             'crun-git',
             'podman-dnsname-git',
             'podman-git',
+            'pyinstaller-hooks-contrib',
+            'pyinstaller-hooks-contrib-git',
             'skopeo-git',
             'slirp4netns-git',
           ]
