@@ -2,10 +2,7 @@ name: Build packages
 
 on:
   schedule:
-    - cron: '0 0 * * 1'
-  push:
-    branches:
-      - main
+    - cron: '0 0 * * *'
 
 concurrency:
   group: ${{ github.repository }}
