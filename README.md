@@ -2,6 +2,18 @@
 
 [![Build packages](https://github.com/samarthj/AUR/actions/workflows/build-pkg.yml/badge.svg)](https://github.com/samarthj/AUR/actions/workflows/build-pkg.yml)
 
+![AUR version](https://img.shields.io/aur/version/buildah-git?label=buildah-git)
+![AUR version](https://img.shields.io/aur/version/conmon-git?label=conmon-git)
+![AUR version](https://img.shields.io/aur/version/containers-common-git?label=containers-common-git)
+![AUR version](https://img.shields.io/aur/version/crun-git?label=crun-git)
+![AUR version](https://img.shields.io/aur/version/gallery-dl-bin?label=gallery-dl-bin)
+![AUR version](https://img.shields.io/aur/version/podman-dnsname-git?label=podman-dnsname-git)
+![AUR version](https://img.shields.io/aur/version/podman-git?label=podman-git) ![AUR version](https://img.shields.io/aur/version/podman-git?label=podman-docker-git)
+![AUR version](https://img.shields.io/aur/version/pyinstaller?label=pyinstaller) ![AUR version](https://img.shields.io/aur/version/pyinstaller-git?label=pyinstaller-git)
+![AUR version](https://img.shields.io/aur/version/pyinstaller-hooks-contrib?label=pyinstaller-hooks-contrib) ![AUR version](https://img.shields.io/aur/version/pyinstaller-hooks-contrib-git?label=pyinstaller-hooks-contrib-git)
+![AUR version](https://img.shields.io/aur/version/skopeo-git?label=skopeo-git)
+![AUR version](https://img.shields.io/aur/version/slirp4netns-git?label=slirp4netns-git)
+
 Things that I am maintaining on the arch user repository.
 
 All git packages have automated build release cycles every week. (At some point I will implement following upstreams directly rather than having an arbitrary schedule, but this works well enough for now.).
