@@ -1,6 +1,7 @@
 # Sam's AUR Packages
 
 [![Build packages](https://github.com/samarthj/AUR/actions/workflows/build-pkg.yml/badge.svg)](https://github.com/samarthj/AUR/actions/workflows/build-pkg.yml)
+[![Python packages](https://github.com/samarthj/AUR/actions/workflows/python-pkg.yml/badge.svg)](https://github.com/samarthj/AUR/actions/workflows/python-pkg.yml)
 
 [![AUR version](https://img.shields.io/aur/version/buildah-git?label=buildah-git)](https://aur.archlinux.org/packages/buildah-git/)
 [![AUR version](https://img.shields.io/aur/version/conmon-git?label=conmon-git)](https://aur.archlinux.org/packages/conmon-git/)
