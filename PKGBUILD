@@ -1,5 +1,8 @@
 # Maintainer: Sam  <dev at samarthj dot com>
 # Contributor: Renato Caldas <renato dat calgera ot com>
+
+# shellcheck disable=2034,2148,2154
+
 _pkgname=pdm-pep517
 pkgname=python-$_pkgname
 pkgver=0.8.0
@@ -18,11 +21,13 @@ package() {
     PIP_CONFIG_FILE=/dev/null pip install \
         --root="$pkgdir" \
         --isolated \
+        --use-pep517 \
         --ignore-installed \
         --no-deps \
         --no-compile \
         --no-warn-script-location \
         ${_pkgname//-/_}-$pkgver-py3-none-any.whl
-    python -O -m compileall "${pkgdir}/$pkgname"
+    python -O -m compileall -j "$(nproc)" -s "$pkgdir"  "$pkgdir/usr/lib/python3.9/site-packages/"
+    rm -rf "$pkgdir/usr/lib/python3.9/site-packages/${_pkgname//-/_}-$pkgver.dist-info/direct_url.json" || true
     install -Dm644 "${_pkgname//-/_}-$pkgver.dist-info/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
