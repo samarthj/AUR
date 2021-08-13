@@ -1,4 +1,5 @@
-# Maintainer: Renato Caldas <renato dat calgera ot com>
+# Maintainer: Sam  <dev at samarthj dot com>
+# Contributor: Renato Caldas <renato dat calgera ot com>
 _pkgname=pdm-pep517
 pkgname=python-$_pkgname
 pkgver=0.8.0
