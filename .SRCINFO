@@ -1,7 +1,7 @@
 pkgbase = python-pdm-pep517
 	pkgdesc = PEP 517 support for PDM
 	pkgver = 0.8.0
-	pkgrel = 1
+	pkgrel = 2
 	url = https://pdm.fming.dev/
 	arch = any
 	license = MIT
