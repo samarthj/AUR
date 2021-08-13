@@ -8,3 +8,4 @@ pkg
 Containerfile
 buildah.sh
 makepkg.conf
+.env
