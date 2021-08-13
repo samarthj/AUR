@@ -5,7 +5,6 @@ pkgbase = python-pdm-pep517
 	url = https://pdm.fming.dev/
 	arch = any
 	license = MIT
-	makedepends = python-build
 	makedepends = python-pip
 	depends = python
 	source = https://files.pythonhosted.org/packages/py3/p/pdm-pep517/pdm_pep517-0.8.0-py3-none-any.whl
