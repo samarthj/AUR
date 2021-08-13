@@ -17,6 +17,11 @@
 [![AUR version](https://img.shields.io/aur/version/skopeo-git?label=skopeo-git)](https://aur.archlinux.org/packages/skopeo-git/)
 [![AUR version](https://img.shields.io/aur/version/slirp4netns-git?label=slirp4netns-git)](https://aur.archlinux.org/packages/slirp4netns-git/)
 
+[![AUR version](https://img.shields.io/aur/version/python-atoml?label=python-atoml)](https://aur.archlinux.org/packages/python-atoml/)
+[![AUR version](https://img.shields.io/aur/version/python-pdm?label=python-pdm)](https://aur.archlinux.org/packages/python-pdm/)
+[![AUR version](https://img.shields.io/aur/version/python-pdm-pep517?label=python-pdm-pep517)](https://aur.archlinux.org/packages/python-pdm-pep517/)
+[![AUR version](https://img.shields.io/aur/version/python-pythonfinder?label=python-pythonfinder)](https://aur.archlinux.org/packages/python-pythonfinder/)
+
 Things that I am maintaining on the arch user repository.
 
 All git packages have automated build release cycles every week. (At some point I will implement following upstreams directly rather than having an arbitrary schedule, but this works well enough for now.).
