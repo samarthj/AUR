@@ -5,7 +5,6 @@ pkgbase = python-pdm
 	url = https://pdm.fming.dev/
 	arch = any
 	license = MIT
-	makedepends = python-build
 	makedepends = python-pip>=20.1
 	depends = python>=3.8
 	depends = python-appdirs
