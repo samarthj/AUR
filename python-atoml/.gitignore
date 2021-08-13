@@ -1,0 +1,10 @@
+.vscode
+packages
+sources
+src
+pkg
+*.tar.*
+*.code-workspace
+Containerfile
+buildah.sh
+makepkg.conf
