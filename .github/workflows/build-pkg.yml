@@ -13,7 +13,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
-      max-parallel: 1
       fail-fast: true
       matrix:
         package:
@@ -24,8 +23,6 @@ jobs:
             'crun-git',
             'podman-dnsname-git',
             'podman-git',
-            'pyinstaller',
-            'pyinstaller-git',
             'pyinstaller-hooks-contrib',
             'pyinstaller-hooks-contrib-git',
             'skopeo-git',
