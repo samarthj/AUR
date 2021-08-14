@@ -1,3 +1,4 @@
+https://files.pythonhosted.org/packages/py3/p/pdm/pdm-1.7.2-py3-none-any.whl
 pkgbase = python-pdm
 	pkgdesc = A modern Python package manager with PEP 582 support.
 	pkgver = 1.7.2
@@ -18,6 +19,7 @@ pkgbase = python-pdm
 	depends = python-resolvelib
 	depends = python-shellingham
 	depends = python-tomli>=1.1.0
+	noextract = pdm-1.7.2-py3-none-any.whl
 	source = https://files.pythonhosted.org/packages/py3/p/pdm/pdm-1.7.2-py3-none-any.whl
 	sha512sums = bbcc42195cb955aef1b31ea8b200156d9bf13e6428cd39edd4d30cb03c6d0c9f69a04f99dbac2d5f2cdb21c633b1282b6c2ee55327b507f17c600b4fd72c8747
 

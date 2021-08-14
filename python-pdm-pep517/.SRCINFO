@@ -1,3 +1,4 @@
+https://files.pythonhosted.org/packages/py3/p/pdm-pep517/pdm_pep517-0.8.0-py3-none-any.whl
 pkgbase = python-pdm-pep517
 	pkgdesc = PEP 517 support for PDM
 	pkgver = 0.8.0
@@ -7,6 +8,7 @@ pkgbase = python-pdm-pep517
 	license = MIT
 	makedepends = python-pip
 	depends = python
+	noextract = pdm_pep517-0.8.0-py3-none-any.whl
 	source = https://files.pythonhosted.org/packages/py3/p/pdm-pep517/pdm_pep517-0.8.0-py3-none-any.whl
 	sha512sums = 08278cfc6826276a79c72f383f92af21f1c6e17dacd13d605fd74da592df1e6bddfe200d3062a679a3a427b5bf9d7110de9b1bfb1402b11ef2a7031412478249
 
