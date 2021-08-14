@@ -1,4 +1,3 @@
-https://files.pythonhosted.org/packages/py2.py3/p/pythonfinder/pythonfinder-1.2.8-py2.py3-none-any.whl
 pkgbase = python-pythonfinder
 	pkgdesc = Cross Platform Search Tool for Finding Pythons
 	pkgver = 1.2.8
@@ -13,7 +12,6 @@ pkgbase = python-pythonfinder
 	depends = python-click
 	depends = python-six
 	depends = python-packaging
-	noextract = pythonfinder-1.2.8-py2.py3-none-any.whl
 	source = https://files.pythonhosted.org/packages/py2.py3/p/pythonfinder/pythonfinder-1.2.8-py2.py3-none-any.whl
 	sha512sums = ee8a8cc1aad8eb7c9def0963cce98d46e27ebb9c62be571c47a2b6d9c4f62d07c099cdd9a46bb4803d4970d1974ce0617e205f53db1747b6c9c7a11055a67566
 

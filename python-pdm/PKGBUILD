@@ -29,10 +29,8 @@ makedepends=("python-pip>=20.1")
 _pkgname_prefix="${_pkgname:0:1}"
 _pkgname_underscored="${_pkgname//-/_}"
 _pkgurl="https://files.pythonhosted.org/packages/py3/$_pkgname_prefix/$_pkgname/$_pkgname_underscored-$pkgver-py3-none-any.whl"
-echo "$_pkgurl"
 source=("$_pkgurl")
-noextract=("${source[@]##*/}")
-sha512sums=("bbcc42195cb955aef1b31ea8b200156d9bf13e6428cd39edd4d30cb03c6d0c9f69a04f99dbac2d5f2cdb21c633b1282b6c2ee55327b507f17c600b4fd72c8747")
+sha512sums=('bbcc42195cb955aef1b31ea8b200156d9bf13e6428cd39edd4d30cb03c6d0c9f69a04f99dbac2d5f2cdb21c633b1282b6c2ee55327b507f17c600b4fd72c8747')
 
 package() {
   cd "$srcdir" || exit
