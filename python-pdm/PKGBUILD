@@ -27,7 +27,9 @@ depends=(
   'python-tomli>=1.1.0'
 )
 makedepends=("python-pip>=20.1")
-source=("https://files.pythonhosted.org/packages/py3/${_pkgname::1}/$_pkgname/${_pkgname//-/_}-$pkgver-py3-none-any.whl")
+_pkgname_prefix="${_pkgname:0:1}"
+_pkgname_underscored="${_pkgname//-/_}"
+source=("https://files.pythonhosted.org/packages/py3/$_pkgname_prefix/$_pkgname/$_pkgname_underscored-$pkgver-py3-none-any.whl")
 sha512sums=('bbcc42195cb955aef1b31ea8b200156d9bf13e6428cd39edd4d30cb03c6d0c9f69a04f99dbac2d5f2cdb21c633b1282b6c2ee55327b507f17c600b4fd72c8747')
 
 package() {
