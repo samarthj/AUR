@@ -1,8 +1,8 @@
-name: Build packages
+name: Python custom packages
 
 on:
-  schedule:
-    - cron: '0 0 * * *'
+#   schedule:
+#     - cron: '0 2 * * *'
   workflow_dispatch:
 
 concurrency:
@@ -15,19 +15,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        package:
-          [
-            'buildah-git',
-            'conmon-git',
-            'containers-common-git',
-            'crun-git',
-            'podman-dnsname-git',
-            'podman-git',
-            'pyinstaller-hooks-contrib',
-            'pyinstaller-hooks-contrib-git',
-            'skopeo-git',
-            'slirp4netns-git',
-          ]
+        package: ['pyinstaller']
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -42,9 +30,11 @@ jobs:
           aur_username: Sam
           aur_email: dev@samarthj.com
           aur_ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
+          is_python_pkg: true
+          python_pkg_name: ${{ matrix.package }}
+          use_pypi_release_version: true
           dry_run: false
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GOPATH: /home/builder/.local/share/go
           GOCACHE: /home/builder/.cache/go
       - name: Delete tag ${{ matrix.package }}
@@ -91,4 +81,5 @@ jobs:
           git commit --message "ci(github-actions): :package: updpkg: ${{ steps.build.outputs.ver0 }}"
           git fetch origin main
           git pull --rebase origin main
-          git push
+          git pushname: Python packages
+
