@@ -32,7 +32,7 @@ Note: At the recommendation from a trusted user, I have stopped automatic aur re
 
 The packages are available as release assets, however it is recommended to install directly from your package manager (since a few builds depend on system configuration discovery).
 
-## Doing local builds
+## Doing builds
 
 I use containerized builds using [archlinux:base-devel](https://hub.docker.com/_/archlinux).
 
@@ -45,7 +45,9 @@ I use these under 3 different use-cases (the workflows are mentioned on the shie
 - python-named packages
 - python non-standard named packages
 
-### Local Image Setup
+### Local Build Setup
+
+#### Local Image
 
 Containerfile
 
@@ -86,7 +88,7 @@ podman build -f Containerfile -t arch:makepkg .
 Note 1: No added packages from `makedepends` (emulate as clean of an install as possible).
 Note 2: No additional repositories. Use the `-I` parameter to explicitly include packages needed from AUR or other repos.
 
-### Local Build
+#### Local Build
 
 ```bash
 podman run --rm -i -t \
