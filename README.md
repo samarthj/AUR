@@ -36,7 +36,16 @@ The packages are available as release assets, however it is recommended to insta
 
 I use containerized builds using [archlinux:base-devel](https://hub.docker.com/_/archlinux).
 
-### Image Setup
+### Automated Build Setup
+
+I built an action to do so that is tailor-ed for my purposes. https://github.com/marketplace/actions/archlinux-pkgbuild
+
+I use these under 3 different use-cases (the workflows are mentioned on the shields above):
+- git-packages
+- python-named packages
+- python non-standard named packages
+
+### Local Image Setup
 
 Containerfile
 
@@ -77,7 +86,7 @@ podman build -f Containerfile -t arch:makepkg .
 Note 1: No added packages from `makedepends` (emulate as clean of an install as possible).
 Note 2: No additional repositories. Use the `-I` parameter to explicitly include packages needed from AUR or other repos.
 
-### Build
+### Local Build
 
 ```bash
 podman run --rm -i -t \
@@ -90,7 +99,7 @@ podman run --rm -i -t \
 
 Note: I am using the `--userns=keep-id` flag since I use rootless podman and the builder user won't have permission to access data in the mounted volume otherwise. There is also the new `keep-groups` flag for group-add, but you will have to tweak the Containerfile if your default groups don't match (as is the case for me). This setup should work for most default user configurations. And no, I am not going to run makepkg as root in the container.
 
-### Always `namcap`
+#### Always `namcap`
 
 ```bash
 namcap ./<package-name>/PKGBUILD ./packages/<package-name>*.tar.zst
