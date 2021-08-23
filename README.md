@@ -1,8 +1,6 @@
 # Sam's AUR Packages
 
 [![Build packages](https://github.com/samarthj/AUR/actions/workflows/build-pkg.yml/badge.svg)](https://github.com/samarthj/AUR/actions/workflows/build-pkg.yml)
-[![Python packages](https://github.com/samarthj/AUR/actions/workflows/python-pkg.yml/badge.svg)](https://github.com/samarthj/AUR/actions/workflows/python-pkg.yml)
-
 [![AUR version](https://img.shields.io/aur/version/buildah-git?label=buildah-git)](https://aur.archlinux.org/packages/buildah-git/)
 [![AUR version](https://img.shields.io/aur/version/conmon-git?label=conmon-git)](https://aur.archlinux.org/packages/conmon-git/)
 [![AUR version](https://img.shields.io/aur/version/containers-common-git?label=containers-common-git)](https://aur.archlinux.org/packages/containers-common-git/)
@@ -11,21 +9,26 @@
 [![AUR version](https://img.shields.io/aur/version/podman-dnsname-git?label=podman-dnsname-git)](https://aur.archlinux.org/packages/podman-dnsname-git/)
 [![AUR version](https://img.shields.io/aur/version/podman-git?label=podman-git)](https://aur.archlinux.org/packages/podman-git/)
 [![AUR version](https://img.shields.io/aur/version/podman-git?label=podman-docker-git)](https://aur.archlinux.org/packages/podman-docker-git/)
-[![AUR version](https://img.shields.io/aur/version/pyinstaller?label=pyinstaller)](https://aur.archlinux.org/packages/pyinstaller/)
 [![AUR version](https://img.shields.io/aur/version/pyinstaller-git?label=pyinstaller-git)](https://aur.archlinux.org/packages/pyinstaller-git/)
 [![AUR version](https://img.shields.io/aur/version/pyinstaller-hooks-contrib?label=pyinstaller-hooks-contrib)](https://aur.archlinux.org/packages/pyinstaller-hooks-contrib/)
 [![AUR version](https://img.shields.io/aur/version/pyinstaller-hooks-contrib-git?label=pyinstaller-hooks-contrib-git)](https://aur.archlinux.org/packages/pyinstaller-hooks-contrib-git/)
 [![AUR version](https://img.shields.io/aur/version/skopeo-git?label=skopeo-git)](https://aur.archlinux.org/packages/skopeo-git/)
 [![AUR version](https://img.shields.io/aur/version/slirp4netns-git?label=slirp4netns-git)](https://aur.archlinux.org/packages/slirp4netns-git/)
 
+[![Python packages](https://github.com/samarthj/AUR/actions/workflows/python-pkg.yml/badge.svg)](https://github.com/samarthj/AUR/actions/workflows/python-pkg.yml)
 [![AUR version](https://img.shields.io/aur/version/python-atoml?label=python-atoml)](https://aur.archlinux.org/packages/python-atoml/)
 [![AUR version](https://img.shields.io/aur/version/python-pdm?label=python-pdm)](https://aur.archlinux.org/packages/python-pdm/)
 [![AUR version](https://img.shields.io/aur/version/python-pdm-pep517?label=python-pdm-pep517)](https://aur.archlinux.org/packages/python-pdm-pep517/)
 [![AUR version](https://img.shields.io/aur/version/python-pythonfinder?label=python-pythonfinder)](https://aur.archlinux.org/packages/python-pythonfinder/)
 
+[![Python custom](https://github.com/samarthj/AUR/actions/workflows/python-custom-pkgs.yml/badge.svg)](https://github.com/samarthj/AUR/actions/workflows/python-custom-pkgs.yml)
+[![AUR version](https://img.shields.io/aur/version/pyinstaller?label=pyinstaller)](https://aur.archlinux.org/packages/pyinstaller/)
+
 Things that I am maintaining on the arch user repository.
 
-All git packages have automated build release cycles every week. (At some point I will implement following upstreams directly rather than having an arbitrary schedule, but this works well enough for now.).
+All git packages have automated build release cycles every (n) day. (At some point I will implement following upstreams directly rather than having an arbitrary schedule, but this works well enough for now.).
+
+Note: At the recommendation from a trusted user, I have stopped automatic aur releases for the ***-git** packages. They will still keep their build states fresh here on github, but I will be switching to manual releases for them as needed.
 
 The packages are available as release assets, however it is recommended to install directly from your package manager (since a few builds depend on system configuration discovery).
 
