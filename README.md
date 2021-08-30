@@ -10,7 +10,6 @@
 [![AUR version](https://img.shields.io/aur/version/podman-git?label=podman-git)](https://aur.archlinux.org/packages/podman-git/)
 [![AUR version](https://img.shields.io/aur/version/podman-git?label=podman-docker-git)](https://aur.archlinux.org/packages/podman-docker-git/)
 [![AUR version](https://img.shields.io/aur/version/pyinstaller-git?label=pyinstaller-git)](https://aur.archlinux.org/packages/pyinstaller-git/)
-[![AUR version](https://img.shields.io/aur/version/pyinstaller-hooks-contrib?label=pyinstaller-hooks-contrib)](https://aur.archlinux.org/packages/pyinstaller-hooks-contrib/)
 [![AUR version](https://img.shields.io/aur/version/pyinstaller-hooks-contrib-git?label=pyinstaller-hooks-contrib-git)](https://aur.archlinux.org/packages/pyinstaller-hooks-contrib-git/)
 [![AUR version](https://img.shields.io/aur/version/skopeo-git?label=skopeo-git)](https://aur.archlinux.org/packages/skopeo-git/)
 [![AUR version](https://img.shields.io/aur/version/slirp4netns-git?label=slirp4netns-git)](https://aur.archlinux.org/packages/slirp4netns-git/)
@@ -23,6 +22,7 @@
 
 [![Python custom](https://github.com/samarthj/AUR/actions/workflows/python-custom-pkgs.yml/badge.svg)](https://github.com/samarthj/AUR/actions/workflows/python-custom-pkgs.yml)
 [![AUR version](https://img.shields.io/aur/version/pyinstaller?label=pyinstaller)](https://aur.archlinux.org/packages/pyinstaller/)
+[![AUR version](https://img.shields.io/aur/version/pyinstaller-hooks-contrib?label=pyinstaller-hooks-contrib)](https://aur.archlinux.org/packages/pyinstaller-hooks-contrib/)
 
 Things that I am maintaining on the arch user repository.
 
