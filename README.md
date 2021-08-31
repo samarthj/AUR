@@ -117,4 +117,6 @@ Tip: You may also just use the [devtools chroot](https://wiki.archlinux.org/titl
 
 - [podman](https://podman.io) for testing builds
 - [namcap](https://wiki.archlinux.org/title/namcap) for sanity checks
-- [aurpublish](https://github.com/eli-schwartz/aurpublish) for the releases to AUR
+
+### No longer in use (but very helpful in the early stages)
+- [aurpublish](https://github.com/eli-schwartz/aurpublish) for the releases to AUR. These our now managed by my own github action.
