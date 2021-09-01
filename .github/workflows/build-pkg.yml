@@ -44,7 +44,7 @@ jobs:
           aur_email: dev@samarthj.com
           aur_ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
           dry_run: true
-          install_optdepends: true
+          install_optdepends: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GOPATH: /home/builder/.local/share/go
