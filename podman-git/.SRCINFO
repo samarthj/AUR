@@ -1,6 +1,6 @@
 pkgbase = podman-git
 	pkgdesc = Tool and library for running OCI-based containers in pods (git)
-	pkgver = 4.0.0_dev.r12729.g26c8549ae
+	pkgver = 4.0.0_dev.r12752.g63f6656f8
 	pkgrel = 1
 	url = https://github.com/containers/podman.git
 	arch = any
