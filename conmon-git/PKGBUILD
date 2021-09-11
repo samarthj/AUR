@@ -2,7 +2,7 @@
 
 pkgname=conmon-git
 _pkgname=conmon
-pkgver=2.0.30_dev.r393.gdcb9b7e
+pkgver=2.0.30_dev.r394.g53c9f75
 pkgrel=1
 pkgdesc="OCI container runtime monitor (git)"
 arch=('any')
