@@ -1,0 +1,82 @@
+name: Build packages
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 3
+      fail-fast: false
+      matrix:
+        package: ['podman-dnsname-git', 'podman-git']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Build
+        id: build
+        uses: samarthj/arch-pkgbuild-action@main
+        with:
+          pkgbuild_root: ${{ matrix.package }}
+          aur_username: Sam
+          aur_email: dev@samarthj.com
+          aur_ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
+          dry_run: false
+          install_optdepends: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GOPATH: /home/builder/.local/share/go
+          GOCACHE: /home/builder/.cache/go
+      - name: Delete tag ${{ matrix.package }}
+        uses: cb80/delrel@latest
+        with:
+          tag: ${{ matrix.package }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Release tag ${{ matrix.package }}
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ matrix.package }}
+          name: ${{ steps.build.outputs.ver0 }}
+          body: ${{ steps.build.outputs.ver0 }}
+          allowUpdates: true
+          replacesArtifacts: true
+          artifacts: '*.tar.zst'
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Import GPG key
+        id: gpg
+        uses: crazy-max/ghaction-import-gpg@v3
+        with:
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          git-user-signingkey: true
+          git-commit-gpgsign: true
+      - name: Setup git config
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name "Sam"
+          git config --global user.email dev@samarthj.com
+          git config --global user.signkey dev@samarthj.com
+          git config --global commit.gpgsign true
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+      - name: Rebase and Push
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git add .
+          git status
+          [ -z "$(git diff FETCH_HEAD --stat)" ] && exit 0
+          git commit --message "ci(github-actions): :package: updpkg: ${{ steps.build.outputs.ver0 }}"
+          git fetch origin main
+          git pull --rebase origin main
+          git push
