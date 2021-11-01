@@ -3,7 +3,7 @@
 
 pkgname=buildah-git
 _pkgname=buildah
-pkgver=1.23.0.r101.ga3810633
+pkgver=1.23.0.r103.gecd74746
 pkgrel=1
 pkgdesc="A tool which facilitates building OCI images (git)"
 arch=('any')
