@@ -6,7 +6,7 @@
 _pkgname=pythonfinder
 pkgname=python-pythonfinder
 pkgver=1.2.8
-pkgrel=1
+pkgrel=2
 pkgdesc="Cross Platform Search Tool for Finding Pythons"
 arch=("any")
 url="https://github.com/sarugaku/pythonfinder"
@@ -29,7 +29,7 @@ package() {
     --no-compile \
     --no-warn-script-location \
     ${_pkgname//-/_}-$pkgver-py2.py3-none-any.whl
-  python -O -m compileall -j "$(nproc)" -s "$pkgdir" "$pkgdir/usr/lib"
+  python -O -m compileall -s "$pkgdir" "$pkgdir/usr/lib"
   mapfile -t direct_url_file < <(find "$pkgdir"/usr/lib -type f -name 'direct_url.json')
   rm -rf "${direct_url_file[@]}" || true
   install -Dm644 "${_pkgname//-/_}-$pkgver.dist-info/LICENSE.txt" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"

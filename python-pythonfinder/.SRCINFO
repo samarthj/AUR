@@ -1,7 +1,7 @@
 pkgbase = python-pythonfinder
 	pkgdesc = Cross Platform Search Tool for Finding Pythons
 	pkgver = 1.2.8
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/sarugaku/pythonfinder
 	arch = any
 	license = MIT
