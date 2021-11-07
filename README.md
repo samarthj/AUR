@@ -23,6 +23,7 @@
 [![Python custom](https://github.com/samarthj/AUR/actions/workflows/python-custom-pkgs.yml/badge.svg)](https://github.com/samarthj/AUR/actions/workflows/python-custom-pkgs.yml)
 [![AUR version](https://img.shields.io/aur/version/pyinstaller?label=pyinstaller)](https://aur.archlinux.org/packages/pyinstaller/)
 [![AUR version](https://img.shields.io/aur/version/pyinstaller-hooks-contrib?label=pyinstaller-hooks-contrib)](https://aur.archlinux.org/packages/pyinstaller-hooks-contrib/)
+[![AUR version](https://img.shields.io/aur/version/python-pyexiftool?label=python-pyexiftool)](https://aur.archlinux.org/packages/python-pyexiftool/)
 
 Things that I am maintaining on the arch user repository.
 

@@ -81,4 +81,4 @@ jobs:
           git commit --message "ci(github-actions): :package: updpkg: ${{ steps.build.outputs.ver0 }}"
           git fetch origin main
           git pull --rebase origin main
-          git pushname: Python packages
+          git push
