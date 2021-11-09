@@ -5,7 +5,7 @@
 
 _pkgname=pythonfinder
 pkgname=python-pythonfinder
-pkgver=1.2.8
+pkgver=1.2.9
 pkgrel=2
 pkgdesc="Cross Platform Search Tool for Finding Pythons"
 arch=("any")
@@ -17,7 +17,7 @@ _pkgname_prefix="${_pkgname:0:1}"
 _pkgname_underscored="${_pkgname//-/_}"
 _pkgurl="https://files.pythonhosted.org/packages/py2.py3/$_pkgname_prefix/$_pkgname/$_pkgname_underscored-$pkgver-py2.py3-none-any.whl"
 source=("$_pkgurl")
-sha512sums=('ee8a8cc1aad8eb7c9def0963cce98d46e27ebb9c62be571c47a2b6d9c4f62d07c099cdd9a46bb4803d4970d1974ce0617e205f53db1747b6c9c7a11055a67566')
+sha512sums=('e461b36d160e42901519054159e03c3febadc1515e0ef6059ab13208073a91c9b968ad59f8873b0c39abb6466c3aa0b7b921995588e2f64256114ec0b9dc1097')
 
 package() {
   cd "$srcdir" || exit
