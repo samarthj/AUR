@@ -5,7 +5,7 @@
 
 _pkgname=pdm-pep517
 pkgname=python-$_pkgname
-pkgver=0.8.6
+pkgver=0.9.2
 pkgrel=3
 pkgdesc="PEP 517 support for PDM"
 arch=("any")
@@ -17,7 +17,7 @@ _pkgname_prefix="${_pkgname:0:1}"
 _pkgname_underscored="${_pkgname//-/_}"
 _pkgurl="https://files.pythonhosted.org/packages/py3/$_pkgname_prefix/$_pkgname/$_pkgname_underscored-$pkgver-py3-none-any.whl"
 source=("$_pkgurl")
-sha512sums=('5c30d7ac0ddaf050ad4eb8159fdb3a4ff7244b31539f95b6c3b51ee342297453141cb7f310f83049e3a03dac4fbc3c9c10eb61ffd4d5ae57005f0cea27a60330')
+sha512sums=('e6bb202a4c50ea0f5c0007e1f62d2877f5fe4c5f702b9212f2b9900be0f4424291ca7b039823c7bc2eece33a106369dcbe2a3e9666f80b6b10182881da123847')
 
 package() {
   cd "$srcdir" || exit
