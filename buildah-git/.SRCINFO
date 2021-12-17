@@ -1,6 +1,6 @@
 pkgbase = buildah-git
 	pkgdesc = A tool which facilitates building OCI images (git)
-	pkgver = 1.23.0.r175.g857ba5ab
+	pkgver = 1.23.0.r183.gc7e45ed8
 	pkgrel = 1
 	url = https://github.com/containers/buildah.git
 	arch = any
