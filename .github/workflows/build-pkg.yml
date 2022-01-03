@@ -26,6 +26,7 @@ jobs:
             'podman-git',
             'pyinstaller-git',
             'pyinstaller-hooks-contrib-git',
+            'python-resolvelib-git',
             'skopeo-git',
             'slirp4netns-git',
           ]
