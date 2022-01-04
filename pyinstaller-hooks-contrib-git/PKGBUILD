@@ -5,7 +5,7 @@
 
 pkgname=pyinstaller-hooks-contrib-git
 _pkgname=pyinstaller-hooks-contrib
-pkgver=2021.5.r281.g532ca55
+pkgver=2021.5.r282.ga3ee35a
 pkgrel=1
 pkgdesc="Community maintained hooks for PyInstaller"
 arch=('any')
