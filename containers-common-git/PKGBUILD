@@ -32,11 +32,11 @@ source=("git+$url"
   'mounts.conf'
 )
 sha256sums=('SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'ae96bbb4a2a3e10759b1506754724bff0fa05feaf16958d19c73124e6b3fed45')
+            'SKIP'
+            'SKIP'
+            'SKIP'
+            'SKIP'
+            'ae96bbb4a2a3e10759b1506754724bff0fa05feaf16958d19c73124e6b3fed45')
 
 pkgver() {
   cd "$srcdir/$_gitpkgname" || exit 1
