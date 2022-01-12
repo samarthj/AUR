@@ -1,6 +1,6 @@
 pkgbase = conmon-git
 	pkgdesc = OCI container runtime monitor (git)
-	pkgver = 2.0.32_dev.r421.gb8748f5
+	pkgver = 2.0.33_dev.r424.ga5ba131
 	pkgrel = 1
 	url = https://github.com/containers/conmon.git
 	arch = any
