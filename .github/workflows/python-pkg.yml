@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        package: ['python-atoml', 'python-pdm', 'python-pdm-pep517']
+        package: ['python-atoml']
     steps:
       - name: Checkout
         uses: actions/checkout@v2
