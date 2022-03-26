@@ -1,6 +1,6 @@
 pkgbase = python-resolvelib-git
 	pkgdesc = Resolve abstract dependencies into concrete ones
-	pkgver = 0.8.1.r7.gebf6c51
+	pkgver = 0.8.1.r14.gf1136b4
 	pkgrel = 1
 	url = https://github.com/sarugaku/resolvelib
 	arch = any
