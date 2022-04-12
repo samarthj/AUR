@@ -1,6 +1,6 @@
 pkgbase = pyinstaller-hooks-contrib-git
 	pkgdesc = Community maintained hooks for PyInstaller
-	pkgver = 2022.4.r327.g4afa30b
+	pkgver = 2022.4.r330.g9c2fd16
 	pkgrel = 1
 	url = https://github.com/pyinstaller/pyinstaller-hooks-contrib
 	arch = any
