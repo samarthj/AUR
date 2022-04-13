@@ -1,6 +1,6 @@
 pkgbase = pyinstaller-git
 	pkgdesc = Bundles a Python application and all its dependencies into a single package
-	pkgver = 5.0.dev0.r8323.gb87d42618
+	pkgver = 5.0.dev0.r8324.g7acfd674e
 	pkgrel = 1
 	url = http://www.pyinstaller.org
 	arch = x86_64
