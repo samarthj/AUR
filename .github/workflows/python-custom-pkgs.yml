@@ -24,7 +24,7 @@ jobs:
           fetch-depth: 0
       - name: Build
         id: build
-        uses: samarthj/arch-pkgbuild-action@v2.4
+        uses: samarthj/arch-pkgbuild-action@889893244e335a76900725ac4d704a0dee50b0bc
         with:
           pkgbuild_root: ${{ matrix.package }}
           aur_username: Sam
