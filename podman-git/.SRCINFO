@@ -9,6 +9,7 @@ pkgbase = podman-git
 	makedepends = go
 	makedepends = go-md2man
 	makedepends = git
+	makedepends = gcc
 	makedepends = btrfs-progs
 	makedepends = catatonit
 	makedepends = libapparmor.so

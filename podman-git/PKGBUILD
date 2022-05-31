@@ -10,7 +10,7 @@ pkgver=4.2.0_dev.r15273.ga550af260
 pkgrel=1
 pkgdesc="Tool and library for running OCI-based containers in pods (git)"
 arch=(x86_64 aarch64)
-makedepends=(go go-md2man git btrfs-progs catatonit libapparmor.so libdevmapper.so libgpgme.so libseccomp.so libsystemd)
+makedepends=(go go-md2man git gcc btrfs-progs catatonit libapparmor.so libdevmapper.so libgpgme.so libseccomp.so libsystemd)
 # https://github.com/containers/podman/issues/13297
 options=(!lto)
 url="https://github.com/containers/$_pkgname.git"
@@ -26,6 +26,9 @@ pkgver() {
 }
 
 build() {
+  # Fails if using clang
+  export CC=gcc
+  export CXX=g++
   export CGO_CPPFLAGS="${CPPFLAGS}"
   export CGO_CFLAGS="${CFLAGS}"
   export CGO_CXXFLAGS="${CXXFLAGS}"
