@@ -5,7 +5,7 @@
 pkgname=containers-common-git
 _pkgname=containers-common
 _gitpkgname=common
-pkgver=0.49.0_dev.r1931.g916327b5
+pkgver=0.49.0_dev.r1937.g36e4b862
 pkgrel=1
 pkgdesc="Configuration files and manpages for containers (git)"
 arch=('any')
