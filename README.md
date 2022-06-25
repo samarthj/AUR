@@ -78,7 +78,7 @@ ENTRYPOINT [ "/usr/bin/makepkg", "-csf", "--noconfirm" ]
 
 makepkg.conf
 
-```
+```ini
 #-- Destination: specify a fixed directory where all packages will be placed
 PKGDEST=/home/builder/packages
 #-- Source cache: specify a fixed directory where source files will be cached
@@ -125,4 +125,5 @@ Tip: You may also just use the [devtools chroot](https://wiki.archlinux.org/titl
 - [namcap](https://wiki.archlinux.org/title/namcap) for sanity checks
 
 ### No longer in use (but very helpful in the early stages)
-- [aurpublish](https://github.com/eli-schwartz/aurpublish) for the releases to AUR. These our now managed by my own github action.
+
+- [aurpublish](https://github.com/eli-schwartz/aurpublish) for the releases to AUR. These are now managed by my own github action.
