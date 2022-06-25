@@ -11,7 +11,6 @@ arch=("any")
 url="https://github.com/frostming/atoml.git"
 license=("MIT")
 makedepends=(python-installer python-build python-wheel python-pdm-pep517)
-_py="py3"
 source=("https://files.pythonhosted.org/packages/source/${_name::1}/${_name}/${_name//-/_}-${pkgver}.tar.gz")
 sha512sums=('2739ae8facfc0ae7512d287e8597967caf815ae48be692c5c1814bee288e51acc7570dcb119f732fa15f6d240590b64b73b85a1b0144048eedfab8d62c840291')
 
