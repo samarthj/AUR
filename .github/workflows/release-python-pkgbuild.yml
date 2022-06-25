@@ -1,9 +1,16 @@
-name: Python packages
+name: Release any python-pkgbuild
 
 on:
-  schedule:
-    - cron: '0 1 * * *'
   workflow_dispatch:
+    inputs:
+      package:
+        type: choice
+        options:
+          - python-atoml
+          - python-pdm
+          - python-pdm-pep517
+        required: true
+        description: 'The package name to release'
 
 concurrency:
   group: ${{ github.repository }}
@@ -12,10 +19,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: true
-      matrix:
-        package: ['python-atoml', 'python-pdm-pep517']
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -26,7 +29,7 @@ jobs:
         id: build
         uses: samarthj/arch-pkgbuild-action@main
         with:
-          pkgbuild_root: ${{ matrix.package }}
+          pkgbuild_root: ${{ github.event.inputs.package }}
           aur_username: Sam
           aur_email: dev@samarthj.com
           aur_ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
@@ -36,15 +39,15 @@ jobs:
         env:
           GOPATH: /home/builder/.local/share/go
           GOCACHE: /home/builder/.cache/go
-      - name: Delete tag ${{ matrix.package }}
+      - name: Delete tag ${{ github.event.inputs.package }}
         uses: cb80/delrel@latest
         with:
-          tag: ${{ matrix.package }}
+          tag: ${{ github.event.inputs.package }}
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Release tag ${{ matrix.package }}
+      - name: Release tag ${{ github.event.inputs.package }}
         uses: ncipollo/release-action@v1
         with:
-          tag: ${{ matrix.package }}
+          tag: ${{ github.event.inputs.package }}
           name: ${{ steps.build.outputs.ver0 }}
           body: ${{ steps.build.outputs.ver0 }}
           allowUpdates: true
