@@ -4,6 +4,19 @@ on:
   workflow_dispatch:
     inputs:
       package:
+        type: choice
+        options:
+          - buildah-git
+          - conmon-git
+          - containers-common-git
+          - crun-git
+          - podman-dnsname-git
+          - podman-git
+          - pyinstaller-git
+          - pyinstaller-hooks-contrib-git
+          - python-resolvelib-git
+          - skopeo-git
+          - slirp4netns-git
         required: true
         description: 'The package name to release'
 
