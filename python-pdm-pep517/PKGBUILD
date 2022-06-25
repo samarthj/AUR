@@ -3,34 +3,51 @@
 
 # shellcheck disable=2034,2148,2154
 
-_pkgname=pdm-pep517
-pkgname=python-$_pkgname
-pkgver=0.10.2
-pkgrel=3
+pkgname=python-pdm-pep517
+_name=${pkgname#python-}
+pkgver=1.0.0
+pkgrel=1
 pkgdesc="PEP 517 support for PDM"
 arch=("any")
-url="https://pdm.fming.dev/"
+url="https://github.com/pdm-project/pdm-pep517"
 license=("MIT")
-depends=("python")
-makedepends=("python-pip")
-_pkgname_prefix="${_pkgname:0:1}"
-_pkgname_underscored="${_pkgname//-/_}"
-_pkgurl="https://files.pythonhosted.org/packages/py3/$_pkgname_prefix/$_pkgname/$_pkgname_underscored-$pkgver-py3-none-any.whl"
-source=("$_pkgurl")
-sha512sums=('4166ba8292ccc8ca980bcb4b8c1e8b605e28c05a61e0105cdae3599006d3e8add9f754c587e0a1c6fed7474129b648fbf819fee169e18c85efe41ef02c2272e5')
+depends=("python>=3.7" "python-boolean.py>=3.8" "python-cerberus>=1.3.4" "python-license-expression>=21.6.14" "python-packaging>=21.0" "python-pyparsing>=3.0.7" "python-tomli>=2.0.1" "python-tomli-w>=1.0.0")
+makedepends=("python-build" "python-installer")
+checkdepends=("git" "python-pytest")
+source=("https://files.pythonhosted.org/packages/source/${_name::1}/${_name}/${_name}-${pkgver}.tar.gz")
+sha512sums=('7dc0d2954d1804f6e013537ef33ef0f90498f4036dcd87d75a33fa443cbe9cfe3432c8d087b84498acbd23391d4aeab0e43c53055d4745ad105e9e6767531aeb')
+
+prepare() {
+  cd "$srcdir/${_name}-$pkgver" || exit 1
+  _devendored=(boolean cerberus license_expression packaging pyparsing tomli tomli_w)
+  for p in "${_devendored[@]}"; do
+    echo "devendoring python-${p//_/-}"
+    rm -frv pdm/pep517/_vendor/"${p}"*
+    sed -i "s/^${p//_/-}==.*$//g" pdm/pep517/_vendor/vendor.txt
+    sed -i "s/from pdm.pep517._vendor import ${p}/import ${p}/g" pdm/pep517/*.py tests/*.py
+    sed -i "s/from pdm.pep517._vendor.${p} import/from ${p} import/g" pdm/pep517/*.py tests/*.py
+    sed -i "s/from pdm.pep517._vendor.${p}.\(.*\) import/from ${p}.\1 import/g" pdm/pep517/*.py tests/*.py
+    sed -i "s/import pdm.pep517._vendor.${p}/import ${p}/g" pdm/pep517/*.py tests/*.py
+  done
+}
+
+build() {
+  cd "$srcdir/${_name}-$pkgver" || exit 1
+  python -m build --wheel --skip-dependency-check --no-isolation
+}
+
+check() {
+  cd "$srcdir/${_name}-$pkgver" || exit 1
+
+  # set default git config for test
+  git config --global --get "user.email" || git config --global user.email "test@example.com"
+  git config --global --get "user.name" || git config --global user.name "test"
+  pytest -vvv tests
+}
 
 package() {
-  cd "$srcdir" || exit
-  PIP_CONFIG_FILE=/dev/null pip install \
-    --root="$pkgdir" \
-    --isolated \
-    --ignore-installed \
-    --no-deps \
-    --no-compile \
-    --no-warn-script-location \
-    ${_pkgname//-/_}-$pkgver-py3-none-any.whl
-  python -O -m compileall -s "$pkgdir" "$pkgdir/usr/lib/"
-  mapfile -t direct_url_file < <(find "$pkgdir"/usr/lib -type f -name 'direct_url.json')
-  rm -rf "${direct_url_file[@]}" || true
-  install -Dm644 "${_pkgname//-/_}-$pkgver.dist-info/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  cd "$srcdir/${_name}-$pkgver" || exit 1
+  python -m installer --destdir="$pkgdir" dist/*.whl
+  install -Dm644 "$srcdir/${_name}-$pkgver/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -vDm 644 "$srcdir/${_name}-$pkgver/README.md" -t "$pkgdir/usr/share/doc/$pkgname/README.md"
 }
