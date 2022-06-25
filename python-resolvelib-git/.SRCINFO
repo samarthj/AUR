@@ -6,10 +6,12 @@ pkgbase = python-resolvelib-git
 	arch = any
 	license = ISC
 	checkdepends = python-commentjson
+	checkdepends = python-packaging
 	checkdepends = python-pytest-runner
+	makedepends = git
 	makedepends = python-setuptools
-	depends = python
-	provides = python-resolvelib
+	depends = python>=3.6
+	provides = python-resolvelib=0.8.1.r16.ga5ae681
 	conflicts = python-resolvelib
 	source = git+https://github.com/sarugaku/resolvelib.git
 	sha512sums = SKIP
