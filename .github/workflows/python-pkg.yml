@@ -19,6 +19,7 @@ jobs:
           - python-atoml
           - python-findpython
           - python-pdm-pep517
+          - python-tinyaes
     steps:
       - name: Checkout
         uses: actions/checkout@v2
