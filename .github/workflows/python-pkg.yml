@@ -17,8 +17,8 @@ jobs:
       matrix:
         package:
           - python-atoml
-          - python-findpython
-          - python-pdm-pep517
+          # moved to community - python-findpython
+          # moved to community - python-pdm-pep517
           - python-tinyaes
     steps:
       - name: Checkout
