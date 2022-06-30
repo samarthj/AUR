@@ -7,9 +7,9 @@ on:
         type: choice
         options:
           - python-atoml
-          - python-findpython
-          - python-pdm
-          - python-pdm-pep517
+          # moved to community - python-findpython
+          # moved to community - python-pdm
+          # moved to community - python-pdm-pep517
           - python-tinyaes
         required: true
         description: 'The package name to release'
