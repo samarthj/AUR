@@ -10,14 +10,15 @@ pkgbase = pyinstaller-git
 	arch = s390x
 	license = custom:PyInstaller
 	makedepends = cmocka
-	makedepends = python>=3.6
-	makedepends = python-setuptools
 	makedepends = git
-	makedepends = python-wheel
+	makedepends = python-installer
 	depends = python-altgraph
-	depends = pyinstaller-hooks-contrib
-	optdepends = python-pycrypto: bytecode encryption support
-	optdepends = upx: executable compression support
+	depends = pyinstaller-hooks-contrib>=2021.4
+	depends = python>=3.7
+	depends = python<3.11
+	depends = python-setuptools
+	optdepends = python-tinyaes>=1.0.0: bytecode encryption support
+	optdepends = python-importlib-metadata: support for python 3.8 and lower
 	provides = pyinstaller
 	conflicts = pyinstaller
 	source = git+https://github.com/pyinstaller/pyinstaller
