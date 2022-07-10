@@ -12,6 +12,8 @@ pkgbase = pyinstaller-git
 	makedepends = cmocka
 	makedepends = git
 	makedepends = python-installer
+	makedepends = python-build
+	makedepends = python-wheel
 	depends = python-altgraph
 	depends = pyinstaller-hooks-contrib>=2021.4
 	depends = python>=3.7

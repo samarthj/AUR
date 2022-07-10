@@ -24,6 +24,8 @@ makedepends=(
   "cmocka"
   "git"
   "python-installer"
+  "python-build"
+  "python-wheel"
 )
 optdepends=(
   "python-tinyaes>=1.0.0: bytecode encryption support"
