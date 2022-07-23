@@ -1,6 +1,6 @@
 pkgbase = python-resolvelib-git
 	pkgdesc = Resolve abstract dependencies into concrete ones
-	pkgver = 0.8.1.r16.ga5ae681
+	pkgver = 0.8.1.r22.g0e6ed4e
 	pkgrel = 1
 	url = https://github.com/sarugaku/resolvelib
 	arch = any
@@ -11,7 +11,7 @@ pkgbase = python-resolvelib-git
 	makedepends = git
 	makedepends = python-setuptools
 	depends = python>=3.6
-	provides = python-resolvelib=0.8.1.r16.ga5ae681
+	provides = python-resolvelib=0.8.1.r22.g0e6ed4e
 	conflicts = python-resolvelib
 	source = git+https://github.com/sarugaku/resolvelib.git
 	sha512sums = SKIP

@@ -4,7 +4,7 @@
 
 pkgname=python-resolvelib-git
 _pkgname=resolvelib
-pkgver=0.8.1.r16.ga5ae681
+pkgver=0.8.1.r22.g0e6ed4e
 pkgrel=1
 pkgdesc="Resolve abstract dependencies into concrete ones"
 url="https://github.com/sarugaku/$_pkgname"
