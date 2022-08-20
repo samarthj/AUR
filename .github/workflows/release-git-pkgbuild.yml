@@ -21,7 +21,7 @@ on:
         description: 'The package name to release'
 
 concurrency:
-  group: ${{ github.repository }}
+  group: ${{ github.repository }}-release-git
   cancel-in-progress: false
 
 jobs:

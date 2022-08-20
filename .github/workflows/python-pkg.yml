@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: ${{ github.repository }}
+  group: ${{ github.repository }}-python
   cancel-in-progress: true
 
 jobs:

@@ -15,8 +15,8 @@ on:
         description: 'The package name to release'
 
 concurrency:
-  group: ${{ github.repository }}
-  cancel-in-progress: true
+  group: ${{ github.repository }}-release-python
+  cancel-in-progress: false
 
 jobs:
   build:
