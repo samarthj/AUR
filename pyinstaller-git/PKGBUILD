@@ -6,7 +6,7 @@
 
 pkgname=pyinstaller-git
 _pkgname=pyinstaller
-pkgver=5.3.r8458.g1d2b79c5c
+pkgver=5.3.r8459.ge6286835a
 pkgrel=1
 pkgdesc="Bundles a Python application and all its dependencies into a single package"
 arch=('x86_64' 'i686' 'aarch64' 'ppc64le' 's390x')
