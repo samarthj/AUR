@@ -1,6 +1,6 @@
 pkgbase = crun-git
 	pkgdesc = A fast and lightweight fully featured OCI runtime and C library for running containers
-	pkgver = 1.5.r61.g33ba5e8
+	pkgver = 1.6.r1.ge01d44c
 	pkgrel = 1
 	url = https://github.com/containers/crun.git
 	arch = any
