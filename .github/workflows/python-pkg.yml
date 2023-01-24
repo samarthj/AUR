@@ -17,9 +17,8 @@ jobs:
       matrix:
         package:
           - python-atoml
-          # moved to community - python-findpython
-          # moved to community - python-pdm-pep517
           - python-tinyaes
+          - python-pytest-drop-dup-tests
     steps:
       - name: Checkout
         uses: actions/checkout@v3

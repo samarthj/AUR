@@ -7,10 +7,8 @@ on:
         type: choice
         options:
           - python-atoml
-          # moved to community - python-findpython
-          # moved to community - python-pdm
-          # moved to community - python-pdm-pep517
           - python-tinyaes
+          - python-pytest-drop-dup-tests
         required: true
         description: 'The package name to release'
 

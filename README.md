@@ -1,6 +1,7 @@
 # Sam's AUR Packages
 
 [![Build packages](https://github.com/samarthj/AUR/actions/workflows/build-pkg.yml/badge.svg)](https://github.com/samarthj/AUR/actions/workflows/build-pkg.yml)
+[![Git releases](https://github.com/samarthj/AUR/actions/workflows/git-release.yml/badge.svg)](https://github.com/samarthj/AUR/actions/workflows/git-release.yml)
 [![AUR version](https://img.shields.io/aur/version/buildah-git?label=buildah-git)](https://aur.archlinux.org/packages/buildah-git/)
 [![AUR version](https://img.shields.io/aur/version/conmon-git?label=conmon-git)](https://aur.archlinux.org/packages/conmon-git/)
 [![AUR version](https://img.shields.io/aur/version/containers-common-git?label=containers-common-git)](https://aur.archlinux.org/packages/containers-common-git/)
@@ -14,20 +15,17 @@
 [![AUR version](https://img.shields.io/aur/version/python-resolvelib-git?label=python-resolvelib-git)](https://aur.archlinux.org/packages/python-resolvelib-git/)
 [![AUR version](https://img.shields.io/aur/version/skopeo-git?label=skopeo-git)](https://aur.archlinux.org/packages/skopeo-git/)
 [![AUR version](https://img.shields.io/aur/version/slirp4netns-git?label=slirp4netns-git)](https://aur.archlinux.org/packages/slirp4netns-git/)
+[![AUR version](https://img.shields.io/aur/version/uutils-coreutils-git?label=uutils-coreutils-git)](https://aur.archlinux.org/packages/uutils-coreutils-git/)
 
 [![Python packages](https://github.com/samarthj/AUR/actions/workflows/python-pkg.yml/badge.svg)](https://github.com/samarthj/AUR/actions/workflows/python-pkg.yml)
 [![AUR version](https://img.shields.io/aur/version/python-atoml?label=python-atoml)](https://aur.archlinux.org/packages/python-atoml/)
-[![AUR version](https://img.shields.io/aur/version/python-pdm?label=python-pdm)](https://aur.archlinux.org/packages/python-pdm/)
-[![AUR version](https://img.shields.io/aur/version/python-pdm-pep517?label=python-pdm-pep517)](https://aur.archlinux.org/packages/python-pdm-pep517/)
-[![AUR version](https://img.shields.io/aur/version/python-pythonfinder?label=python-pythonfinder)](https://aur.archlinux.org/packages/python-pythonfinder/)
+[![AUR version](https://img.shields.io/aur/version/python-tinyaes?label=python-tinyaes)](https://aur.archlinux.org/packages/python-tinyaes/)
+[![AUR version](https://img.shields.io/aur/version/python-pytest-drop-dup-tests?label=python-pytest-drop-dup-tests)](https://aur.archlinux.org/packages/python-pytest-drop-dup-tests/)
 
 [![Python custom](https://github.com/samarthj/AUR/actions/workflows/python-custom-pkgs.yml/badge.svg)](https://github.com/samarthj/AUR/actions/workflows/python-custom-pkgs.yml)
 [![AUR version](https://img.shields.io/aur/version/pyinstaller?label=pyinstaller)](https://aur.archlinux.org/packages/pyinstaller/)
 [![AUR version](https://img.shields.io/aur/version/pyinstaller-hooks-contrib?label=pyinstaller-hooks-contrib)](https://aur.archlinux.org/packages/pyinstaller-hooks-contrib/)
 [![AUR version](https://img.shields.io/aur/version/python-pyexiftool?label=python-pyexiftool)](https://aur.archlinux.org/packages/python-pyexiftool/)
-
-[![Git releases](https://github.com/samarthj/AUR/actions/workflows/git-release.yml/badge.svg)](https://github.com/samarthj/AUR/actions/workflows/git-release.yml)
-[![AUR version](https://img.shields.io/aur/version/gallery-dl-bin?label=gallery-dl-bin)](https://aur.archlinux.org/packages/gallery-dl-bin/)
 
 Things that I am maintaining on the arch user repository.
 
