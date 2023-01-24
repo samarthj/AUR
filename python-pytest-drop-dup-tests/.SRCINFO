@@ -1,7 +1,7 @@
 pkgbase = python-pytest-drop-dup-tests
 	pkgdesc = A utility to find python versions on your system.
 	pkgver = 0.3.0
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/nicoddemus/pytest-drop-dup-tests
 	arch = any
 	license = MIT
