@@ -1,7 +1,7 @@
 pkgbase = pyinstaller
 	pkgdesc = Bundles a Python application and all its dependencies into a single package
 	pkgver = 5.7.0
-	pkgrel = 2
+	pkgrel = 3
 	url = http://www.pyinstaller.org
 	arch = any
 	license = GPL2
