@@ -24,6 +24,7 @@ depends=(
 )
 makedepends=(
   "zlib"
+  "cmocka"
   "git"
   "python-installer"
   "python-build"
@@ -33,7 +34,6 @@ makedepends=(
 checkdepends=(
   # Testing framework.
   "python-pytest"
-  "cmocka"
   # Work-around for a bug in execnet 1.4.1
   "python-execnet>=1.5.0"
   # Better subprocess alternative with implemented timeout.
