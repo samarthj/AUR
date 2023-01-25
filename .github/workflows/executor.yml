@@ -1,15 +1,13 @@
 name: Executor
 
 on:
-  schedule:
-    - cron: '0 2 * * *'
+  # schedule:
+  #   - cron: '0 2 * * *'
   workflow_dispatch:
     inputs:
       package:
         required: true
-        type: choice
-        options:
-          - pyinstaller
+        type: string
       dry_run:
         required: false
         default: true
