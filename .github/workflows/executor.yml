@@ -36,8 +36,8 @@ on:
         type: boolean
 
 concurrency:
-  group: ${{ github.repository }}-executor
-  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ inputs.job }}
+  cancel-in-progress: false
 
 defaults:
   run:

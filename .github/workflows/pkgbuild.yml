@@ -47,7 +47,7 @@ on:
 
 concurrency:
   group: ${{ github.workflow }}-${{ inputs.pkg-name }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   pkgbuild:
