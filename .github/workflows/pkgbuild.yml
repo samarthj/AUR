@@ -79,6 +79,7 @@ jobs:
           GOPATH: /home/builder/.local/share/go
           GOCACHE: /home/builder/.cache/go
           PYTEST_ADDOPTS: ${{ inputs.pytest_addopts }}
+          PYTEST_XDIST_AUTO_NUM_WORKERS: 8
       - name: Upload build "${{ steps.build.outputs.ver0 }}"
         uses: actions/upload-artifact@v3
         with:
