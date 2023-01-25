@@ -60,24 +60,24 @@ jobs:
       github-token: ${{ secrets.github-token }}
       aur-ssh-private-key: ${{ secrets.aur-ssh-private-key }}
 
-  git-push:
-    uses: ./.github/workflows/git-push.yml
-    needs:
-      - pkgbuild
-    with:
-      pkg-name: ${{ inputs.package }}
-      pkg-version: ${{ needs.pkgbuild.outputs.pkg-version }}
-    secrets:
-      github-token: ${{ secrets.github-token }}
-      gpg-passphrase: ${{ secrets.gpg-passphrase }}
-      gpg-private-key: ${{ secrets.gpg-private-key }}
+  # git-push:
+  #   uses: ./.github/workflows/git-push.yml
+  #   needs:
+  #     - pkgbuild
+  #   with:
+  #     pkg-name: ${{ inputs.package }}
+  #     pkg-version: ${{ needs.pkgbuild.outputs.pkg-version }}
+  #   secrets:
+  #     github-token: ${{ secrets.github-token }}
+  #     gpg-passphrase: ${{ secrets.gpg-passphrase }}
+  #     gpg-private-key: ${{ secrets.gpg-private-key }}
 
-  git-tag:
-    uses: ./.github/workflows/git-tag.yml
-    needs:
-      - git-push
-    with:
-      pkg-name: ${{ inputs.package }}
-      pkg-version: ${{ needs.pkgbuild.outputs.pkg-version }}
-    secrets:
-      github-token: ${{ secrets.github-token }}
+  # git-tag:
+  #   uses: ./.github/workflows/git-tag.yml
+  #   needs:
+  #     - git-push
+  #   with:
+  #     pkg-name: ${{ inputs.package }}
+  #     pkg-version: ${{ needs.pkgbuild.outputs.pkg-version }}
+  #   secrets:
+  #     github-token: ${{ secrets.github-token }}
