@@ -1,0 +1,42 @@
+name: Git Tag
+
+on:
+  workflow_call:
+    inputs:
+      pkg-name:
+        required: true
+        type: string
+      pkg-version:
+        required: true
+        type: string
+    secrets:
+      github-token:
+        type: string
+
+concurrency:
+  group: ${{ github.workflow }}-${{ inputs.pkg-version }}
+  cancel-in-progress: true
+
+jobs:
+  git-tag:
+    runs-on: ${{ vars.RUNS_ON }}
+    steps:
+      - name: Delete tag ${{ inputs.pkg-name }}
+        uses: cb80/delrel@latest
+        with:
+          tag: ${{ inputs.pkg-name }}
+          token: ${{ secrets.github-token }}
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ inputs.pkg-version }}
+      - name: Release tag ${{ inputs.pkg-name }}
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ inputs.pkg-name }}
+          name: ${{ inputs.pkg-version }}
+          body: ${{ inputs.pkg-version }}
+          allowUpdates: true
+          replacesArtifacts: true
+          artifacts: '*.tar.zst'
+          token: ${{ secrets.github-token }}

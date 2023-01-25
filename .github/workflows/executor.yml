@@ -1,0 +1,56 @@
+name: Executor
+
+on:
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      job:
+        required: true
+        type: choice
+        options:
+          - pyinstaller
+      dry_run:
+        required: false
+        default: true
+        type: boolean
+      install_optdepends:
+        required: false
+        default: false
+        type: boolean
+      use_pypi_prerelease_version:
+        required: false
+        default: false
+        type: boolean
+      use_pypi_release_version:
+        required: false
+        default: false
+        type: boolean
+      use_git_release_version:
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  group: ${{ github.repository }}-executor
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  pyinstaller:
+    if:  ${{ github.event_name == 'schedule' || inputs.job == 'pyinstaller' }}
+    strategy:
+      matrix:
+        package:
+          - pyinstaller
+          - pyinstaller-hooks-contrib
+    runs-on: ${{ vars.RUNS_ON }}
+    uses: .github/workflows/worker.yml
+    with:
+      package: ${{ matrix.package }}
+      dry_run: true
+      use_pypi_release_version: true
+    secrets: inherit

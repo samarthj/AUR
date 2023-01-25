@@ -1,0 +1,87 @@
+name: Git Tag
+
+on:
+  workflow_call:
+    inputs:
+      pkg-name:
+        required: true
+        type: string
+      dry_run:
+        required: false
+        default: true
+        type: boolean
+      install_optdepends:
+        required: false
+        default: false
+        type: boolean
+      use_pypi_prerelease_version:
+        required: false
+        default: false
+        type: boolean
+      use_pypi_release_version:
+        required: false
+        default: false
+        type: boolean
+      use_git_release_version:
+        required: false
+        default: false
+        type: boolean
+    secrets:
+      aur-ssh-private-key:
+        type: string
+      github-token:
+        type: string
+    outputs:
+      pkg-filename:
+        value: ${{ jobs.pkgbuild.outputs.filename }}
+      pkg-version:
+        value: ${{ jobs.pkgbuild.outputs.version }}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ inputs.pkg-name }}
+  cancel-in-progress: true
+
+jobs:
+  pkgbuild:
+    runs-on: ${{ vars.RUNS_ON }}
+    outputs:
+      pkg-filename: ${{ steps.build.outputs.pkg0 }}
+      pkg-version: ${{ steps.build.outputs.ver0 }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Build ${{ inputs.pkg-name }}
+        id: build
+        uses: samarthj/arch-pkgbuild-action@main
+        with:
+          aur_username: ${{ vars.AUR_USERNAME }}
+          aur_email: ${{ vars.AUR_EMAIL }}
+          pkgbuild_root: ${{ inputs.pkg-name }}
+          aur_ssh_private_key: ${{ secrets.aur-ssh-private-key }}
+          dry_run: ${{ inputs.dry_run }}
+          install_optdepends: ${{ inputs.install_optdepends }}
+          use_pypi_prerelease_version: ${{ inputs.use_pypi_prerelease_version }}
+          use_pypi_release_version: ${{ inputs.use_pypi_release_version }}
+          use_git_release_version: ${{ inputs.use_git_release_version }}
+          is_python_pkg: ${{ inputs.is_python_pkg }}
+        env:
+          GOPATH: /home/builder/.local/share/go
+          GOCACHE: /home/builder/.cache/go
+      - name: Upload build "${{ steps.build.outputs.ver0 }}"
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ steps.build.outputs.ver0 }}
+          path: |
+            *.pkg.*.zst
+          retention-days: 1
+      - name: Upload code "./${{ inputs.pkg-name }}/**"
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ inputs.pkg-name }}
+          path: |
+            ${{ inputs.pkg-name }}/**
+            !*.pkg.*.zst
+          retention-days: 1

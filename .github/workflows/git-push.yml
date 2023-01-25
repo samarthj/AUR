@@ -3,28 +3,59 @@ name: Git Push
 on:
   workflow_call:
     inputs:
+      pkg-name:
+        required: true
+        type: string
       pkg-version:
         required: true
         type: string
+    secrets:
+      github-token:
+        type: string
+      gpg-private-key:
+        type: string
+      gpg-passphrase:
+        type: string
+
+concurrency:
+  group: ${{ github.workflow }}-${{ inputs.pkg-version }}
+  cancel-in-progress: true
 
 jobs:
   git-push:
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.RUNS_ON }}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Import GPG key
+        id: gpg
+        uses: crazy-max/ghaction-import-gpg@v5
+        with:
+          gpg_private_key: ${{ secrets.gpg-private-key }}
+          passphrase: ${{ secrets.gpg-passphrase }}
+          git_user_signingkey: true
+          git_commit_gpgsign: true
       - name: Setup git config
         shell: bash
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.github-token }}
         run: |
-          git config --global user.name "Sam"
-          git config --global user.email dev@samarthj.com
-          git config --global user.signkey dev@samarthj.com
+          git config --global user.name ${{ vars.GIT_USER_NAME }}
+          git config --global user.email ${{ vars.GIT_USER_EMAIL }}
+          git config --global user.signkey ${{ vars.GIT_SIGNKEY }}
           git config --global commit.gpgsign true
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          git remote set-url origin https://x-access-token:${{ secrets.github-token }}@github.com/${{ github.repository }}.git
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ inputs.pkg-name }}
       - name: Rebase and Push
         shell: bash
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.github-token }}
         run: |
           git add .
           git status

@@ -1,0 +1,71 @@
+name: Worker
+
+on:
+  workflow_call:
+    inputs:
+      package:
+        required: true
+        type: string
+      dry_run:
+        required: false
+        default: true
+        type: boolean
+      install_optdepends:
+        required: false
+        default: false
+        type: boolean
+      use_pypi_prerelease_version:
+        required: false
+        default: false
+        type: boolean
+      use_pypi_release_version:
+        required: false
+        default: false
+        type: boolean
+      use_git_release_version:
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  group: ${{ github.workflow }}-${{ inputs.package }}
+  cancel-in-progress: true
+
+jobs:
+  pkgbuild:
+    uses: .github/workflows/pkgbuild.yml
+    with:
+      pkg-name: ${{ inputs.package }}
+      dry_run: ${{ inputs.dry_run }}
+      install_optdepends: ${{ inputs.install_optdepends }}
+      use_pypi_prerelease_version: ${{ inputs.use_pypi_prerelease_version }}
+      use_pypi_release_version: ${{ inputs.use_pypi_release_version }}
+      use_git_release_version: ${{ inputs.use_git_release_version }}
+      is_python_pkg: ${{ inputs.is_python_pkg }}
+    secrets:
+      github-token: ${{ secrects.GITHUB_TOKEN }}
+      aur-ssh-private-key: ${{ secrects.AUR_SSH_PRIVATE_KEY }}
+    env:
+      PYTEST_ADDOPTS: --durations=50 --dist=load --timeout=120 --timeout-method=thread -v -rsxXfE --doctest-glob=
+
+  git-push:
+    uses: .github/workflows/git-push.yml
+    needs:
+      - pkgbuild
+    with:
+      pkg-name: ${{ inputs.package }}
+      pkg-version: ${{ needs.pkgbuild.outputs.pkg-version }}
+    secrets:
+      github-token: ${{ secrects.GITHUB_TOKEN }}
+      gpg-private-key: ${{ secrects.GPG_PRIVATE_KEY }}
+      gpg-passphrase: ${{ secrects.PASSPHRASE }}
+
+  git-tag:
+    uses: .github/workflows/git-push.yml
+    needs:
+      - git-push
+    with:
+      pkg-name: ${{ inputs.package }}
+      pkg-version: ${{ needs.pkgbuild.outputs.pkg-version }}
+    secrets:
+      github-token: ${{ secrects.GITHUB_TOKEN }}
