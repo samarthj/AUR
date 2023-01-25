@@ -77,7 +77,7 @@ jobs:
       gpg-private-key: ${{ secrets.gpg-private-key }}
 
   git-tag:
-    uses: ./.github/workflows/git-push.yml
+    uses: ./.github/workflows/git-tag.yml
     needs:
       - git-push
     with:
