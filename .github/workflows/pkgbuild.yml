@@ -32,9 +32,9 @@ on:
         type: string
     secrets:
       aur-ssh-private-key:
-        type: string
+        required: true
       github-token:
-        type: string
+        required: true
     outputs:
       pkg-filename:
         value: ${{ jobs.pkgbuild.outputs.filename }}

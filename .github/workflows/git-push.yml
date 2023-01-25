@@ -11,11 +11,11 @@ on:
         type: string
     secrets:
       github-token:
-        type: string
+        required: true
       gpg-private-key:
-        type: string
+        required: true
       gpg-passphrase:
-        type: string
+        required: true
 
 concurrency:
   group: ${{ github.workflow }}-${{ inputs.pkg-version }}
