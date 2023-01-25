@@ -44,10 +44,6 @@ on:
       gpg-private-key:
         required: true
 
-concurrency:
-  group: ${{ github.workflow }}-${{ inputs.package }}
-  cancel-in-progress: false
-
 jobs:
   pkgbuild:
     uses: ./.github/workflows/pkgbuild.yml

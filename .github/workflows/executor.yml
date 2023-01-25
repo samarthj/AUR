@@ -35,10 +35,6 @@ on:
         default: false
         type: boolean
 
-concurrency:
-  group: ${{ github.workflow }}-${{ inputs.job }}
-  cancel-in-progress: false
-
 defaults:
   run:
     shell: bash
