@@ -34,6 +34,15 @@ on:
         required: false
         default: ""
         type: string
+    secrets:
+      aur-ssh-private-key:
+        required: true
+      github-token:
+        required: true
+      gpg-passphrase:
+        required: true
+      gpg-private-key:
+        required: true
 
 concurrency:
   group: ${{ github.workflow }}-${{ inputs.package }}
@@ -52,8 +61,8 @@ jobs:
       is_python_pkg: ${{ inputs.is_python_pkg }}
       pytest_addopts: ${{ inputs.pytest_addopts }}
     secrets:
-      github-token: ${{ secrets.GITHUB_TOKEN }}
-      aur-ssh-private-key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
+      github-token: ${{ secrets.github-token }}
+      aur-ssh-private-key: ${{ secrets.aur-ssh-private-key }}
 
   git-push:
     uses: ./.github/workflows/git-push.yml
@@ -63,9 +72,9 @@ jobs:
       pkg-name: ${{ inputs.package }}
       pkg-version: ${{ needs.pkgbuild.outputs.pkg-version }}
     secrets:
-      github-token: ${{ secrets.GITHUB_TOKEN }}
-      gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
-      gpg-passphrase: ${{ secrets.PASSPHRASE }}
+      github-token: ${{ secrets.github-token }}
+      gpg-passphrase: ${{ secrets.gpg-passphrase }}
+      gpg-private-key: ${{ secrets.gpg-private-key }}
 
   git-tag:
     uses: ./.github/workflows/git-push.yml
@@ -75,4 +84,4 @@ jobs:
       pkg-name: ${{ inputs.package }}
       pkg-version: ${{ needs.pkgbuild.outputs.pkg-version }}
     secrets:
-      github-token: ${{ secrets.GITHUB_TOKEN }}
+      github-token: ${{ secrets.github-token }}

@@ -12,9 +12,9 @@ on:
     secrets:
       github-token:
         required: true
-      gpg-private-key:
-        required: true
       gpg-passphrase:
+        required: true
+      gpg-private-key:
         required: true
 
 concurrency:

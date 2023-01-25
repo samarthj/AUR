@@ -58,4 +58,8 @@ jobs:
       use_pypi_release_version: ${{ inputs.use_pypi_release_version }}
       is_python_pkg: ${{ inputs.is_python_pkg }}
       pytest_addopts: --durations=50 --dist=load --timeout=120 --timeout-method=thread -v -rsxXfE --doctest-glob=
-    secrets: inherit
+    secrets:
+      aur-ssh-private-key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
+      github-token: ${{ secrets.GITHUB_TOKEN }}
+      gpg-passphrase: ${{ secrets.PASSPHRASE }}
+      gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
