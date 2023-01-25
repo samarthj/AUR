@@ -17,19 +17,17 @@ jobs:
       fail-fast: false
       matrix:
         package:
-          [
-            'buildah-git',
-            'conmon-git',
-            'containers-common-git',
-            'crun-git',
-            'podman-dnsname-git',
-            'podman-git',
-            'python-resolvelib-git',
-            'skopeo-git',
-            'slirp4netns-git',
-            'pyinstaller-git',
-            'pyinstaller-hooks-contrib-git'
-          ]
+          - buildah-git
+          - conmon-git
+          - containers-common-git
+          - crun-git
+          - podman-dnsname-git
+          - podman-git
+          - pyinstaller-git
+          - pyinstaller-hooks-contrib-git
+          - python-resolvelib-git
+          - skopeo-git
+          - slirp4netns-git
     steps:
       - name: Checkout
         uses: actions/checkout@v3
