@@ -1,4 +1,4 @@
-name: Release any pkgbuild-git
+name: Release any git-pkgbuild
 
 on:
   workflow_dispatch:
