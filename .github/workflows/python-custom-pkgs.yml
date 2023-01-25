@@ -15,7 +15,8 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        package: ['pyinstaller', 'pyinstaller-hooks-contrib', 'pyexiftool']
+        package:
+          - pyexiftool
     steps:
       - name: Checkout
         uses: actions/checkout@v3

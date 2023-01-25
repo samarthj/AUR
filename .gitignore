@@ -8,5 +8,5 @@ Containerfile
 buildah.sh
 makepkg.conf
 .env
-.packages
+.pkgcache
 .paccache

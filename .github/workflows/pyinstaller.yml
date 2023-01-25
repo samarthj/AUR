@@ -1,0 +1,125 @@
+name: Pyinstaller
+
+on:
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.repository }}-pyinstaller
+  cancel-in-progress: true
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        package:
+          - pyinstaller
+          - pyinstaller-hooks-contrib
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Build
+        id: build
+        uses: samarthj/arch-pkgbuild-action@main
+        with:
+          pkgbuild_root: ${{ matrix.package }}
+          aur_username: Sam
+          aur_email: dev@samarthj.com
+          aur_ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
+          is_python_pkg: true
+          python_pkg_name: ${{ matrix.package }}
+          use_pypi_release_version: true
+          dry_run: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GOPATH: /home/builder/.local/share/go
+          GOCACHE: /home/builder/.cache/go
+          PYTEST_ADDOPTS: --durations=50 --dist=load --timeout=120 --timeout-method=thread -v -rsxXfE --doctest-glob=
+      - name: Delete tag ${{ matrix.package }}
+        uses: cb80/delrel@latest
+        with:
+          tag: ${{ matrix.package }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Release tag ${{ matrix.package }}
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ matrix.package }}
+          name: ${{ steps.build.outputs.ver0 }}
+          body: ${{ steps.build.outputs.ver0 }}
+          allowUpdates: true
+          replacesArtifacts: true
+          artifacts: '*.tar.zst'
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Import GPG key
+        id: gpg
+        uses: crazy-max/ghaction-import-gpg@v5
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+      - id: git-push
+        uses: .github/workflows/git-push.yml
+        with:
+          pkg-version: ${{ steps.build.outputs.ver0 }}
+  git:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        package:
+          - pyinstaller-git
+          - pyinstaller-hooks-contrib-git
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Build
+        id: build
+        uses: samarthj/arch-pkgbuild-action@main
+        with:
+          pkgbuild_root: ${{ matrix.package }}
+          aur_username: Sam
+          aur_email: dev@samarthj.com
+          aur_ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
+          dry_run: true
+          install_optdepends: false
+        env:
+          GOPATH: /home/builder/.local/share/go
+          GOCACHE: /home/builder/.cache/go
+          PYTEST_ADDOPTS: --durations=50 --dist=load --timeout=120 --timeout-method=thread -v -rsxXfE --doctest-glob=
+      - name: Delete tag ${{ matrix.package }}
+        uses: cb80/delrel@latest
+        with:
+          tag: ${{ matrix.package }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Release tag ${{ matrix.package }}
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ matrix.package }}
+          name: ${{ steps.build.outputs.ver0 }}
+          body: ${{ steps.build.outputs.ver0 }}
+          allowUpdates: true
+          replacesArtifacts: true
+          artifacts: '*.tar.zst'
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Import GPG key
+        id: gpg
+        uses: crazy-max/ghaction-import-gpg@v5
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+      - id: git-push
+        uses: .github/workflows/git-push.yml
+        with:
+          pkg-version: ${{ steps.build.outputs.ver0 }}
