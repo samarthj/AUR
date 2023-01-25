@@ -10,3 +10,4 @@ makepkg.conf
 .env
 .pkgcache
 .paccache
+.experimental
