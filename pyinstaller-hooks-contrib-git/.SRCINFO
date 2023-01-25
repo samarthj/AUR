@@ -1,21 +1,12 @@
 pkgbase = pyinstaller-hooks-contrib-git
 	pkgdesc = Community maintained hooks for PyInstaller
 	pkgver = 2023.0.r460.g7dba7f9
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/pyinstaller/pyinstaller-hooks-contrib
 	arch = any
 	license = GPL2
 	license = Apache
 	license = custom:PyInstaller
-	checkdepends = pyinstaller
-	checkdepends = python-pytest
-	checkdepends = python-psutil
-	checkdepends = python-flaky
-	checkdepends = python-pytest-timeout>=2.0.0
-	checkdepends = python-pytest-drop-dup-tests
-	checkdepends = python-pytest-rerunfailures
-	checkdepends = python-pytest-xdist
-	checkdepends = python-execnet>=1.5.0
 	makedepends = git
 	makedepends = python-build
 	makedepends = python-installer
