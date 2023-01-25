@@ -43,8 +43,8 @@ jobs:
       use_git_release_version: ${{ inputs.use_git_release_version }}
       is_python_pkg: ${{ inputs.is_python_pkg }}
     secrets:
-      github-token: ${{ secrects.GITHUB_TOKEN }}
-      aur-ssh-private-key: ${{ secrects.AUR_SSH_PRIVATE_KEY }}
+      github-token: ${{ secrets.GITHUB_TOKEN }}
+      aur-ssh-private-key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
     env:
       PYTEST_ADDOPTS: --durations=50 --dist=load --timeout=120 --timeout-method=thread -v -rsxXfE --doctest-glob=
 
@@ -56,9 +56,9 @@ jobs:
       pkg-name: ${{ inputs.package }}
       pkg-version: ${{ needs.pkgbuild.outputs.pkg-version }}
     secrets:
-      github-token: ${{ secrects.GITHUB_TOKEN }}
-      gpg-private-key: ${{ secrects.GPG_PRIVATE_KEY }}
-      gpg-passphrase: ${{ secrects.PASSPHRASE }}
+      github-token: ${{ secrets.GITHUB_TOKEN }}
+      gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+      gpg-passphrase: ${{ secrets.PASSPHRASE }}
 
   git-tag:
     uses: ./.github/workflows/git-push.yml
@@ -68,4 +68,4 @@ jobs:
       pkg-name: ${{ inputs.package }}
       pkg-version: ${{ needs.pkgbuild.outputs.pkg-version }}
     secrets:
-      github-token: ${{ secrects.GITHUB_TOKEN }}
+      github-token: ${{ secrets.GITHUB_TOKEN }}
