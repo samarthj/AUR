@@ -33,7 +33,7 @@ concurrency:
 
 jobs:
   pkgbuild:
-    uses: ./.github/workflows/pkgbuild.yml@main
+    uses: ./.github/workflows/pkgbuild.yml
     with:
       pkg-name: ${{ inputs.package }}
       dry_run: ${{ inputs.dry_run }}
@@ -49,7 +49,7 @@ jobs:
       PYTEST_ADDOPTS: --durations=50 --dist=load --timeout=120 --timeout-method=thread -v -rsxXfE --doctest-glob=
 
   git-push:
-    uses: ./.github/workflows/git-push.yml@main
+    uses: ./.github/workflows/git-push.yml
     needs:
       - pkgbuild
     with:
@@ -61,7 +61,7 @@ jobs:
       gpg-passphrase: ${{ secrects.PASSPHRASE }}
 
   git-tag:
-    uses: ./.github/workflows/git-push.yml@main
+    uses: ./.github/workflows/git-push.yml
     needs:
       - git-push
     with:
