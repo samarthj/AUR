@@ -26,6 +26,10 @@ on:
         required: false
         default: false
         type: boolean
+      is_python_pkg:
+        required: false
+        default: false
+        type: boolean
       use_git_release_version:
         required: false
         default: false
@@ -50,7 +54,8 @@ jobs:
     uses: ./.github/workflows/worker.yml
     with:
       package: ${{ matrix.package }}
-      dry_run: true
-      use_pypi_release_version: true
+      dry_run: ${{ inputs.dry_run }}
+      use_pypi_release_version: ${{ inputs.use_pypi_release_version }}
+      is_python_pkg: ${{ inputs.is_python_pkg }}
       pytest_addopts: --durations=50 --dist=load --timeout=120 --timeout-method=thread -v -rsxXfE --doctest-glob=
     secrets: inherit

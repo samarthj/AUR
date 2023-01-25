@@ -26,6 +26,10 @@ on:
         required: false
         default: false
         type: boolean
+      is_python_pkg:
+        required: false
+        default: false
+        type: boolean
       pytest_addopts:
         required: false
         default: ""
