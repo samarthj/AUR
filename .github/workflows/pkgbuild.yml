@@ -1,4 +1,4 @@
-name: Git Tag
+name: PKGBUILD
 
 on:
   workflow_call:
