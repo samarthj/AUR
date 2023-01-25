@@ -52,4 +52,5 @@ jobs:
       package: ${{ matrix.package }}
       dry_run: true
       use_pypi_release_version: true
+      pytest_addopts: --durations=50 --dist=load --timeout=120 --timeout-method=thread -v -rsxXfE --doctest-glob=
     secrets: inherit

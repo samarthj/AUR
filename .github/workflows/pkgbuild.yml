@@ -26,6 +26,10 @@ on:
         required: false
         default: false
         type: boolean
+      pytest_addopts:
+        required: false
+        default: ""
+        type: string
     secrets:
       aur-ssh-private-key:
         type: string
@@ -70,6 +74,7 @@ jobs:
         env:
           GOPATH: /home/builder/.local/share/go
           GOCACHE: /home/builder/.cache/go
+          PYTEST_ADDOPTS: ${{ inputs.pytest_addopts }}
       - name: Upload build "${{ steps.build.outputs.ver0 }}"
         uses: actions/upload-artifact@v3
         with:

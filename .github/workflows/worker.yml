@@ -26,6 +26,10 @@ on:
         required: false
         default: false
         type: boolean
+      pytest_addopts:
+        required: false
+        default: ""
+        type: string
 
 concurrency:
   group: ${{ github.workflow }}-${{ inputs.package }}
@@ -42,11 +46,10 @@ jobs:
       use_pypi_release_version: ${{ inputs.use_pypi_release_version }}
       use_git_release_version: ${{ inputs.use_git_release_version }}
       is_python_pkg: ${{ inputs.is_python_pkg }}
+      pytest_addopts: ${{ inputs.pytest_addopts }}
     secrets:
       github-token: ${{ secrets.GITHUB_TOKEN }}
       aur-ssh-private-key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
-    env:
-      PYTEST_ADDOPTS: --durations=50 --dist=load --timeout=120 --timeout-method=thread -v -rsxXfE --doctest-glob=
 
   git-push:
     uses: ./.github/workflows/git-push.yml
