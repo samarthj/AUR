@@ -47,7 +47,6 @@ jobs:
         package:
           - pyinstaller
           - pyinstaller-hooks-contrib
-    runs-on: ${{ vars.RUNS_ON }}
     uses: ./.github/workflows/worker.yml
     with:
       package: ${{ matrix.package }}
