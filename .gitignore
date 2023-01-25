@@ -1,12 +1,7 @@
-.vscode
-sources
-src
-pkg
-*.tar.*
-*.code-workspace
-Containerfile
-buildah.sh
-makepkg.conf
-.env
-.pkgcache
-.paccache
+# Ignore everything
+*
+
+# But not these files...
+!.gitignore
+!PKGBUILD
+!.SRCINFO
