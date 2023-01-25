@@ -75,6 +75,7 @@ jobs:
           use_pypi_release_version: ${{ inputs.use_pypi_release_version }}
           use_git_release_version: ${{ inputs.use_git_release_version }}
           is_python_pkg: ${{ inputs.is_python_pkg }}
+          custom_build_cmd: /usr/sbin/makepkg -f --cleanbuild --clean --needed --syncdeps --noconfirm --rmdeps
         env:
           GOPATH: /home/builder/.local/share/go
           GOCACHE: /home/builder/.cache/go
@@ -85,13 +86,14 @@ jobs:
         with:
           name: ${{ steps.build.outputs.ver0 }}
           path: |
-            *.pkg.*.zst
+            ./**/${{ steps.build.outputs.pkg0 }}*
           retention-days: 1
       - name: Upload code "./${{ inputs.pkg-name }}/**"
         uses: actions/upload-artifact@v3
         with:
           name: ${{ inputs.pkg-name }}
           path: |
-            ${{ inputs.pkg-name }}/**
-            !*.pkg.*.zst
+            ./${{ inputs.pkg-name }}/PKGBUILD
+            ./${{ inputs.pkg-name }}/.SRCINFO
+            ./${{ inputs.pkg-name }}/.gitignore
           retention-days: 1

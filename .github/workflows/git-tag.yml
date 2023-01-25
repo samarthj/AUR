@@ -38,5 +38,5 @@ jobs:
           body: ${{ inputs.pkg-version }}
           allowUpdates: true
           replacesArtifacts: true
-          artifacts: '*.tar.zst'
+          artifacts: "${{ inputs.pkg-version }}.*"
           token: ${{ secrets.github-token }}

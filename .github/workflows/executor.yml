@@ -5,7 +5,7 @@ on:
     - cron: '0 2 * * *'
   workflow_dispatch:
     inputs:
-      job:
+      package:
         required: true
         type: choice
         options:
@@ -40,8 +40,23 @@ defaults:
     shell: bash
 
 jobs:
+  arbitrary:
+    if:  ${{ github.event_name == 'workflow_dispatch' }}
+    uses: ./.github/workflows/worker.yml
+    with:
+      package: ${{ inputs.package }}
+      dry_run: ${{ inputs.dry_run }}
+      use_pypi_prerelease_version: ${{ inputs.use_pypi_prerelease_version }}
+      use_pypi_release_version: ${{ inputs.use_pypi_release_version }}
+      use_git_release_version: ${{ inputs.use_git_release_version }}
+      is_python_pkg: ${{ inputs.is_python_pkg }}
+    secrets:
+      aur-ssh-private-key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
+      github-token: ${{ secrets.GITHUB_TOKEN }}
+      gpg-passphrase: ${{ secrets.PASSPHRASE }}
+      gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
   pyinstaller:
-    if:  ${{ github.event_name == 'schedule' || inputs.job == 'pyinstaller' }}
+    if:  ${{ github.event_name == 'schedule' }}
     strategy:
       matrix:
         package:
@@ -50,9 +65,9 @@ jobs:
     uses: ./.github/workflows/worker.yml
     with:
       package: ${{ matrix.package }}
-      dry_run: ${{ inputs.dry_run }}
-      use_pypi_release_version: ${{ inputs.use_pypi_release_version }}
-      is_python_pkg: ${{ inputs.is_python_pkg }}
+      dry_run: false
+      use_pypi_release_version: true
+      is_python_pkg: true
       pytest_addopts: --durations=50 --dist=load --timeout=120 --timeout-method=thread -v -rsxXfE --doctest-glob=
     secrets:
       aur-ssh-private-key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
