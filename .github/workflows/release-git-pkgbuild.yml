@@ -23,8 +23,12 @@ on:
         description: 'The package name to release'
 
 concurrency:
-  group: ${{ github.repository }}-release-git
+  group: ${{ github.workflow }}-${{ inputs.package }}-release
   cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
 
 jobs:
   build:
