@@ -9,6 +9,10 @@ concurrency:
   group: ${{ github.repository }}-python
   cancel-in-progress: true
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   build:
     runs-on: ubuntu-latest

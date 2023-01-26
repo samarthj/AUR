@@ -32,7 +32,7 @@ on:
         type: boolean
       pytest_addopts:
         required: false
-        default: ""
+        default: ''
         type: string
     secrets:
       aur-ssh-private-key:

@@ -52,14 +52,15 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: ${{ inputs.pkg-name }}
+          path: ./${{ inputs.pkg-name }}
       - name: Rebase and Push
         shell: bash
         env:
           GITHUB_TOKEN: ${{ secrets.github-token }}
         run: |
+          [ -z "$(git status --porcelain --untracked-files=no)" ] && exit 0
           git add .
           git status
-          [ -z "$(git status --porcelain --untracked-files=no)" ] && exit 0
           git commit --message "ci(github-actions): :package: updpkg: ${{ inputs.pkg-version }}"
           git fetch origin main
           git pull --rebase origin main

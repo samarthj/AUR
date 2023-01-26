@@ -30,6 +30,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: ${{ inputs.pkg-version }}
+          path: ./${{ inputs.pkg-name }}
       - name: Release tag ${{ inputs.pkg-name }}
         uses: ncipollo/release-action@v1
         with:
@@ -38,5 +39,5 @@ jobs:
           body: ${{ inputs.pkg-version }}
           allowUpdates: true
           replacesArtifacts: true
-          artifacts: "${{ inputs.pkg-version }}.*"
+          artifacts: ${{steps.download.outputs.download-path}}
           token: ${{ secrets.github-token }}

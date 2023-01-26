@@ -9,12 +9,19 @@ on:
           - python-atoml
           - python-tinyaes
           - python-pytest-drop-dup-tests
+          - pyexiftool
+          - pyinstaller
+          - pyinstaller-hooks-contrib
         required: true
         description: 'The package name to release'
 
 concurrency:
-  group: ${{ github.repository }}-release-python
-  cancel-in-progress: false
+  group: ${{ github.workflow }}-${{ inputs.package }}-release
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
 
 jobs:
   build:
@@ -34,6 +41,7 @@ jobs:
           aur_email: dev@samarthj.com
           aur_ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
           is_python_pkg: true
+          python_pkg_name: ${{ github.event.inputs.package }}
           use_pypi_release_version: true
           dry_run: false
         env:
