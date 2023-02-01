@@ -6,8 +6,8 @@
 pkgname=pyinstaller-hooks-contrib-git
 _pkgbase="${pkgname%-git}"
 _pkgname="${_pkgbase#python-}"
-pkgver=2023.0.r460.g7dba7f9
-pkgrel=2
+pkgver=2023.0.r463.g23a86ad
+pkgrel=1
 pkgdesc="Community maintained hooks for PyInstaller"
 arch=('any')
 license=('GPL2' 'Apache' 'custom:PyInstaller')
