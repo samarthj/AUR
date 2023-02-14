@@ -6,7 +6,7 @@
 
 pkgname=crun-git
 _pkgname=crun
-pkgver=1.8.r22.g8e135f5
+pkgver=1.8.r25.g04a2c9e
 pkgrel=1
 pkgdesc="A fast and lightweight fully featured OCI runtime and C library for running containers"
 url="https://github.com/containers/crun"
