@@ -6,7 +6,7 @@
 pkgname=pyinstaller-hooks-contrib-git
 _pkgbase="${pkgname%-git}"
 _pkgname="${_pkgbase#python-}"
-pkgver=2023.3.r494.g79f28de
+pkgver=2023.3.r495.g17afa61
 pkgrel=1
 pkgdesc="Community maintained hooks for PyInstaller"
 arch=('any')
