@@ -2,7 +2,7 @@
 
 pkgname=skopeo-git
 _pkgname=skopeo
-pkgver=1.12.1_dev.r2538.gf2eb6883
+pkgver=1.12.1_dev.r2542.g5fb7eba6
 pkgrel=1
 pkgdesc="A command line utility for various operations on container images and image repositories (git)"
 arch=('any')
