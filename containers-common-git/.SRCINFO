@@ -1,6 +1,6 @@
 pkgbase = containers-common-git
 	pkgdesc = Configuration files and manpages for containers (git)
-	pkgver = 0.54.0_dev.r2562.gbb43795a
+	pkgver = 0.54.0_dev.r2564.g4f6f8cea
 	pkgrel = 1
 	url = https://github.com/containers/common.git
 	arch = any
