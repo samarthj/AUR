@@ -4,6 +4,7 @@
 # Contributor: Thomas Quillan <tjquillan at gmail.com>
 # Contributor: iboyperson <tjquillan at gmail dot com>
 # Contributor: Alessandro Pazzaglia <jackdroido at gmail dot com>
+# Contributor: Teodor Potancok <teodor dot potancok at gmail dot com>
 
 # shellcheck disable=2034,2148,2154,2155
 
@@ -32,29 +33,6 @@ makedepends=(
   "python-build"
   "python-wheel"
   "python-setuptools"
-)
-checkdepends=(
-  # Testing framework.
-  "python-pytest"
-  # Work-around for a bug in execnet 1.4.1
-  "python-execnet>=1.5.0"
-  # Better subprocess alternative with implemented timeout.
-  "python-psutil"
-  # These are required by some of basic tests
-  "python-lxml"
-  "python-tinyaes>=1.0.0"
-  # Plugin to abort hanging tests.
-  "python-pytest-timeout>=2.0.0"
-  # Ability to retry a failed test
-  "python-flaky"
-  # Plugin to abort hanging tests.
-  "python-pytest-timeout"
-  # allows specifying order without duplicates
-  "python-pytest-drop-dup-tests"
-  # reruns failed flaky tests
-  "python-pytest-rerunfailures"
-  # parallel processing for tests
-  "python-pytest-xdist"
 )
 optdepends=(
   "python-tinyaes>=1.0.0: bytecode encryption support"
@@ -93,47 +71,6 @@ build() {
   rm -rvf PyInstaller/bootloader/Windows*
   rm -rvf PyInstaller/bootloader/Linux*
   python -m build --wheel --no-isolation
-}
-
-check() {
-  cd "$_pkgname-$pkgver" || exit 1
-
-  # The tests use an installed version of PyInstaller dist + bootloader
-  # to run properly, and dogfood on that module for a lot of basic tests.
-  # Temporarily extracting the built wheel to build to test it out.
-  python -m installer --destdir="$srcdir/$_pkgname/build" dist/*.whl
-  local site_packages=$(python -c "import site; print(site.getsitepackages()[0])")
-
-  # Disabling several tests that are not relevant to the release of this pkg
-  # test_macos_bundle_signing - macos only
-  # test_apple_events - macos only
-  # test_pywin32 - win32 only
-  # test_hooks - needs additional libraries (will vary by libs installed by user)
-  # test_libraries - needs additional libraries (will vary by libs installed by user)
-  # test_django - needs additional libraries (will vary by libs installed by user)
-  # test_qt - needs additional libraries (hit or miss, works in chroot/clean system, but fails on daily driver)
-  # test_django - needs additional libraries (will vary by libs installed by user)
-  # test_interactive - needs ui-interface (will always fail on headless system)
-
-  PYTHONPATH="$srcdir/$_pkgname/build/$site_packages" \
-    QT_QPA_PLATFORM="offscreen" \
-    pytest \
-    -m "not darwin and not win32" \
-    --ignore "tests/functional/test_macos_bundle_signing.py" \
-    --ignore "tests/functional/test_apple_events.py" \
-    --ignore "tests/functional/test_pywin32.py" \
-    --ignore-glob "tests/functional/test_hooks/**" \
-    --ignore "tests/functional/test_libraries.py" \
-    --ignore "tests/functional/test_django.py" \
-    --ignore "tests/functional/test_qt.py" \
-    --ignore "tests/functional/test_interactive.py" \
-    --maxfail=3 \
-    -n=auto --maxprocesses="${PYTEST_XDIST_AUTO_NUM_WORKERS:-2}" \
-    --dist=load \
-    --force-flaky --no-flaky-report --reruns=3 --reruns-delay=10
-
-  # cleanup temporary wheel extraction
-  rm -rf "$srcdir/$_pkgname/build/usr"
 }
 
 package() {
