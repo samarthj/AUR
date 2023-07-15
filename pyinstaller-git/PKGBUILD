@@ -7,7 +7,7 @@
 pkgname=pyinstaller-git
 _pkgbase="${pkgname%-git}"
 _pkgname="${_pkgbase#python-}"
-pkgver=5.13.0.r8849.g3a3aa2f7e
+pkgver=5.13.0.r8850.g979230b14
 pkgrel=1
 pkgdesc="Bundles a Python application and all its dependencies into a single package"
 arch=('any')
