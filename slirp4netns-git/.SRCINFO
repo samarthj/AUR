@@ -1,6 +1,6 @@
 pkgbase = slirp4netns-git
 	pkgdesc = User-mode networking for unprivileged network namespaces.
-	pkgver = v1.2.0.r12.g524df1f
+	pkgver = v1.2.1.r2.g6c3f66b
 	pkgrel = 1
 	url = https://github.com/rootless-containers/slirp4netns.git
 	arch = any

@@ -3,7 +3,7 @@
 
 _pkgname="slirp4netns"
 pkgname="${_pkgname}-git"
-pkgver=v1.2.0.r12.g524df1f
+pkgver=v1.2.1.r2.g6c3f66b
 pkgrel=1
 pkgdesc="User-mode networking for unprivileged network namespaces."
 arch=('any')
