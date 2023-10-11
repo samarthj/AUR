@@ -57,7 +57,7 @@ jobs:
       pkg-version: ${{ steps.build.outputs.ver0 }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           persist-credentials: false
           fetch-depth: 0
