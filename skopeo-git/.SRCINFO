@@ -1,6 +1,6 @@
 pkgbase = skopeo-git
 	pkgdesc = A command line utility for various operations on container images and image repositories (git)
-	pkgver = 1.19.0_dev.r3135.g119816b1
+	pkgver = 1.19.0_dev.r3142.gc5ccf218
 	pkgrel = 1
 	url = https://github.com/containers/skopeo.git
 	arch = any
